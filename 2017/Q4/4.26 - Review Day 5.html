@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title></title>
+		<style>
+
+		</style>
+
+		<script>
+			var gradesQnt = parseInt(prompt("Amount of grades"));
+			var grades = [];
+			for(var i = 1; i <= gradesQnt; i++){
+				grades.push(parseFloat(prompt("Grade " +i)));
+			}
+			var total = 0;
+			for(var x = 1; x <= grades.length; x++){
+				total = total + grades[x-1];// Arrays start at 0
+			}
+			var avg = total/grades.length;
+			if(avg>=90){
+				alert(avg + "% > Honor Roll");
+			}else if(avg <65){
+				alert(avg + "% > Needs Tutoring");
+			}
+
+			/*
+			var g1 = parseFloat(prompt("Grade 1"));
+			var g2 = parseFloat(prompt("Grade 2"));
+			var g3 = parseFloat(prompt("Grade 3"));
+			var avg = (g1+g2+g3)/3;
+			if(avg>=90){
+				alert(avg + "% > Honor Roll");
+			}else if(avg <65){
+				alert(avg + "% > Needs Tutoring");
+			}
+			*/
+		</script>
+	</head>
+	<body>
+
+	</body>
+</html>

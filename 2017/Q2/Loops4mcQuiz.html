@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<style>
+			#ques{
+				background-color:#99ff99;
+				width: 200px;
+				height: 200px;
+				margin:10px;
+				padding:10px;
+				display:block;
+				float:left;
+				text-align:center;
+				font-family: Arial Black;
+				box-shadow: 0px 10px 0px #55ff55;
+			}
+		</style>
+		<script>
+		function ques(){
+			var build = "";
+			for(i = 1; i<= 5; i++){
+				build+="<div id='ques'>";
+				build+="<h3> Question "+i+"</h3>";
+				build+="<button> Choice 1</button><br>";
+				build+="<button> Choice 2</button><br>";
+				build+="<button> Choice 3</button><br>";
+				build+="<button> Choice 4</button><br>";
+				build+="<br><input type='text'>";
+				build+="</div>";
+			}
+			document.getElementById("container").innerHTML = build;
+		}
+		</script>
+	</head>
+	<body onload="ques()">
+		<div id="container">
+
+		</div>
+	</body>
+</html>

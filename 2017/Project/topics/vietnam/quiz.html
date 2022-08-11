@@ -1,0 +1,135 @@
+<html>
+	<head>
+		<title>Cold War</title>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.3.0/c3.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.3.0/c3.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
+
+		<script src="https://maps.googleapis.com/maps/api/js?key="></script>
+
+		<script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
+
+		<script type="text/template" id="ques">
+			<div class="col-md-6 col-sm-12">
+				<div class="panel panel-primary" id="q{{qnum}}">
+					<div class="panel-heading">
+						Q{{qnum}}. {{question}}
+					</div>
+					<div class="panel-body">
+						<form>
+							A. {{ch1}} <br>
+							B. {{ch2}} <br>
+							C. {{ch3}} <br>
+							D. {{ch4}} <br>
+						</form>
+					</div>
+					<div class="panel-footer">
+						<form class="form-inline">
+							<div class="form-group">
+								<label for="{{qnum}}">Answer: </label>
+								<select class="form-control" id="{{qnumANS}}">
+									<option>A</option>
+									<option>B</option>
+									<option>C</option>
+									<option>D</option>
+								</select>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</script>
+		<script>
+			var quiz = "quiz3";
+
+			var config = {
+				apiKey: "",
+				authDomain: "tutorial-website-project-.firebaseapp.com",
+				databaseURL: "https://tutorial-website-project-.firebaseio.com",
+				projectId: "tutorial-website-project-",
+				storageBucket: "tutorial-website-project-.appspot.com",
+				messagingSenderId: "181401256030"
+			};
+			firebase.initializeApp(config);
+			var database = firebase.database().ref();
+			var data;
+
+			function genQuiz(){
+				database.child(quiz).on('value', function(snapshot){
+						var template = $("#ques").html();
+						data = snapshot.val();
+						var build ="";
+
+						var ques = 1;
+						for(var key in data){
+							data[key].qnum = ques;
+							data[key].qnumANS = ques;
+							build += Mustache.render(template, data[key]);
+							console.log(data);
+							ques++
+						}
+					document.getElementById("quiz").innerHTML = build;
+				})
+			}
+
+			function checkAnswers(){
+				var grade = 0;
+				var qnumber = 0;
+				console.log(data);
+                for(var key in data){
+                    var userAns = document.getElementById(data[key].qnum).value;
+
+                    var correctAns = data[key].ans;
+
+					console.log(userAns,correctAns);
+
+					if (userAns.toLowerCase() == correctAns.toLowerCase()){
+						document.getElementById("q" + data[key].qnum).className = "panel panel-success";
+						grade += 1;
+					}else{
+						document.getElementById("q" + data[key].qnum).className = "panel panel-danger";
+					}
+					qnumber++
+				}
+
+				document.getElementById("score").innerHTML = "<h2 style='text-align:center;'>Your score: " + grade + " / " + qnumber + "( " + Math.round((grade/qnumber)*100) +"%)</h2>";
+			}
+
+
+		</script>
+
+		<style>
+		</style>
+	</head>
+	<body onload="genQuiz()">
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="../../index.html">Cold War</a>
+				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="../../topics.html">Topics</a></li>
+					<li><a href="../../test.html">Test</a></li>
+					<li><a href="../../about.html">About</a></li>
+				</ul>
+			</div>
+		</nav>
+		<h1 style="text-align:center;">The Vietnam War Quiz</h1>
+		<div class="container" id="quiz">
+
+		</div>
+		<div class="container">
+			<button class="btn btn-primary btn-block" onclick="checkAnswers()">Check Answers</button>
+		</div>
+		<div class="container" id="score">
+
+		</div>
+	</body>
+</html>

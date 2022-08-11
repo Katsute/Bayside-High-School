@@ -1,0 +1,119 @@
+
+<html>
+	<head>
+		<title>Cold War</title>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.3.0/c3.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.3.0/c3.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
+
+		<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key="></script>
+		<script>
+			var config = {
+				apiKey: "",
+				authDomain: "tutorial-website-project-.firebaseapp.com",
+				databaseURL: "https://tutorial-website-project-.firebaseio.com",
+				projectId: "tutorial-website-project-",
+				storageBucket: "tutorial-website-project-.appspot.com",
+				messagingSenderId: "181401256030"
+			};
+			firebase.initializeApp(config);
+
+			function myMap(latn,lonn,divid){
+				var mapProp= {
+					center:new google.maps.LatLng(latn,lonn),
+					zoom:6,
+				};
+				var map=new google.maps.Map(document.getElementById(divid),mapProp);
+				//
+				var marker = new google.maps.Marker({
+					position: {lat: latn, lng: lonn},
+					map: map
+				});
+				//
+			};
+		</script>
+
+		<style>
+			#map{
+				height:300px;
+			}
+		</style>
+	</head>
+	<body onload="myMap(14.0583,108.2772,'map')">
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">Cold War</a>
+				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="../topics.html">Topics</a></li>
+					<li><a href="../test.html">Test</a></li>
+					<li><a href="../about.html">About</a></li>
+				</ul>
+			</div>
+		</nav>
+		<div class="container">
+			<div class="col-md-4">
+				<h1>Vietnam War</h1>
+				<div class="panel panel-primary">
+					<div class="panel-heading">Location</div>
+					<div class="panel-body" id="map"></div>
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading">Vietnam War</div>
+					<div class="panel-body">
+						<img style="width:100%;" src="https://1.bp.blogspot.com/-mGp3UC2xCs4/VSP7aCZ4xBI/AAAAAAABaNc/dbwETXApcVc/s1600/Vietnam%2BWar%2B(41).jpg">
+					</div>
+				</div>
+			</div>
+			<div class="col-md-8">
+				<h2 id="vietnamwar">Vietnam War</h2>
+				<blockquote>
+				The Vietnam War, also known as the Second Indochina War,and known in Vietnam as Resistance War
+				Against America was a war that occurred in Vietnam, Laos, and Cambodia from November 1,1955 to April 30,1975.
+				It was the second of the Indochina Wars and was officially fought between North Vietnam
+				and the government of South Vietnam. The North Vietnamese army was supported by the Soviet Union,
+				China and other communist allies and the South Vietnamese armywas supported by the United States,
+				South Korea, Australia, Thailand and other anti-communist allies. The war is therefore considered a Cold War-era proxy war. It ended in 1975 when communist forces
+				seized control of Saigon, ending the Vietnam War, and the country was unified as the Socialist Republic of Vietnam
+				the following year.
+				<footer> History.com</footer>
+				</blockquote>
+
+				<h2 id="controversy">Controversy around the Vietnam War</h2>
+				<blockquote>
+				During the course of the Vietnam War a large segment of the American population came to be
+				opposed to U.S. involvement in South Vietnam. Public opinion steadily turned against the war
+				following 1967 and by 1970 only a third of Americans believed that the U.S. had not made a mistake by sending troops to fight in Vietnam.Nearly a third of the American population were strongly against the war.
+				Some advocates within the peace movement advocated a unilateral withdrawal of
+				U.S. forces from Vietnam. One reason given for the withdrawal is that it would contribute to a lessening of tensions in the region and
+				thus less human bloodshed. Growing opposition to the war in the United States led to bitter divisions among Americans, both before and
+				after President Richard Nixon ordered the withdrawal of U.S. forces in 1973.
+				<footer> History.com</footer>
+				</blockquote>
+
+
+				<h2 id="aftermath">Aftermath of the War</h2>
+				<blockquote>
+				The most immediate effect of the Vietnam War was the staggering death toll.
+				The war killed an estimated 2 million Vietnamese civilians, 1.1 million North Vietnamese troops,
+				200,000 South Vietnamese troops, and 58,000 U.S. troops. Those wounded in combat numbered tens of thousands more. In 1975, it
+				appeared that the Vietnam War was a clear loss for the United States. But while much of Indochina did become Communist,
+				validating the domino theory to an extent, the war left mostly psychological scars in the United States. It did not affect
+				the United States’ status as a superpower, and though North Vietnam "won" the war, realizing Ho Chi Minh’s lifelong dream,
+				Vietnam’s postwar period was filled with more fighting, poverty, and suffering for its people. Today, as capitalism makes
+				inroads in Vietnam, one would hardly suspect that Communists won the war in 1975.
+				<footer> History.com</footer>
+				</blockquote>
+			</div>
+		</div>
+	</body>
+</html>

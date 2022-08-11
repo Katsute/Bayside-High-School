@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> Lesson 13 </title>
+		<style>
+			body{
+}
+			img{
+				width: 100px;
+				height: 100px;
+				text-align: center;
+				border-radius:15px;
+			}
+			#mainPic{
+				width: 400px;
+				height: 400px;
+			}
+			#header{
+				text-align: center;
+			}
+			#thumbnails{
+				text-align: center;
+
+			}
+			#main{
+				text-align: center;
+			}
+		</style>
+		<script>
+			function setPic(thumbnail){
+				var dest = document.getElementById("mainPic");
+				dest.src = thumbnail.src;
+
+			}
+		</script>
+	</head>
+	<body>
+		<div id="header">h</div>
+		<hr>
+		<div id="thumbnails">
+			<img src="https://s-media-cache-ak0.pinimg.com/564x/98/24/e0/9824e049230d4ebd1fa1d9a1b3f90c2a.jpg" onclick="setPic(this)">
+			<img src="http://schools.nyc.gov/NR/rdonlyres/88368498-9B7C-42A7-9E53-EA41AD41141A/48602/bhs.jpg" onclick="setPic(this)">
+			<img src="https://lh3.googleusercontent.com/-GEK64XiInio/T7BhNW9CRzI/AAAAAAAAneU/bry1ks7NCeYE8iDEOFw7HDAUotxizU13ACHM/s540/IMG_4245.JPG" onclick="setPic(this)">
+			<img src="https://i.ytimg.com/vi/qX9nwzZi5FQ/maxresdefault.jpg" onclick="setPic(this)">
+		</div>
+		<hr>
+		<div id="main">
+			<br>
+			<img src="http://www.sendengo.com/static/iship/images/loading/loading-circle.gif" id="mainPic">
+		</div>
+	</body>
+</html>

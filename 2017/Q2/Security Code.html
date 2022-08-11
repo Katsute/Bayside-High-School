@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			*{
+				font-family: Arial Black;
+			}
+			#login{
+			    background-color: #66ff99;
+				height: 100px;
+				width: 300px;
+				text-align:center;
+			}
+		</style>
+		<script>
+			function login(){
+				var code = parseFloat(document.getElementById("code").value);
+				var title = document.getElementById("title");
+				if(code == 100){
+					title.innerHTML = "Administrator";
+				}else if(code == 101){
+				//runs if previous conditions are not met and these conditions are
+					title.innerHTML = "Assistant Principal";
+				}else if(code == 102){
+					title.innerHTML = "Teacher";
+				}else if(code == 103){
+					title.innerHTML = "Student";
+				}else if(code == 104){
+					title.innerHTML = "Parent";
+				}else{
+				//runs if no conditions are met
+					title.innerHTML = "Unknown Code";
+				}
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="login">
+			<br>
+			<input type="text" id="code" placeholder="Code">
+			<button onclick="login()">Login</button>
+			<div id="title"></div>
+		</div>
+	</body>
+</html>

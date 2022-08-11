@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title></title>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+		<meta charset="utf-8">
+
+		<style>
+
+		</style>
+
+		<script>
+			function interest(){
+				var p = parseFloat(prompt("Principal"));
+				var r = parseFloat(prompt("Rate"));
+				var t = parseInt(prompt("Years"));
+				var a = 0;
+				console.log("Showing balance after " + t + "year(s)");
+				for(var i = 1; i <= t; i++){
+					a = p * Math.pow(1+r,i);
+					console.log("Balance after " + i + " year(s): $" + a);
+				}
+				alert("Balance after " + t + " year(s): $" + a)
+			}
+			function interest2(){
+				var p = parseFloat(prompt("Principal"));
+				var r = parseFloat(prompt("Rate"));
+				var n = parseInt(prompt("Times per year"));
+				var t = +parseInt(prompt("Years"));
+				var a = 0
+				console.log("Showing balance after " + t + " year(s), calculating " + n + " time anually");
+				for(var i = 1; i <= t*n; i++){
+					a = p * Math.pow(1+(r/n),n * i);
+					console.log("Balance after period " + i + ": $" + a);
+				}
+				alert("Balance after " + t + " year(s): $" + a)
+			}
+		</script>
+	</head>
+	<body>
+		<div class="container">
+			<br>
+			<button class="btn btn-default" onclick="interest()">Get Compound Interest </button>
+			<button class="btn btn-default" onclick="interest2()"> Get Compund Interest2 </button>
+		</div>
+	</body>
+</html>

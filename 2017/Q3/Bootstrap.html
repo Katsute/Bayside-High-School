@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<meta charset="utf-8">
+		<style>
+			body{
+				background-color:#d9d9d9;
+			}
+			#googleMap{
+				height:400px;
+			}
+			#days{
+				width:60px;
+			}
+		</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key="></script>
+		<script>
+			var unit = "imperial";
+			function showWeather(){
+				var location = document.getElementById("location").value;
+
+				var days = parseInt(document.getElementById("days").value);
+				var key = "&APPID=";
+
+				if(location == ""){
+					document.getElementById("alert").innerHTML = "<div class='alert alert-danger alert-dismissable fade in'><a class='close' data-dismiss='alert' aria-label='close'>&times</a><strong>Please specify a location</strong></div>";
+				}else{
+					document.getElementById("hide").style.visibility = "";
+					document.getElementById("alert").innerHTML = "";
+					$.getJSON("http://api.openweathermap.org/data/2.5/forecast/daily?units="+unit+"&cnt="+days+"&q="+location+key, function(data){
+						//Choosen format is imperial so speed is in mph, temp is in fahrenheit
+
+						var name = data.name;//City name
+						var list = data.list;//List
+						var build = "";
+						build+="<h2 style='text-align:center';>"+data.cnt+" day forcast for "+data.city.name+"</h2>";
+						for(var i=0;i<list.length;i++){
+							var d = new Date(list[i].dt *1000);
+							build+="<div class='col-md-3 col-sm-4'>";
+							build+="<div class='panel panel-primary'>";
+							build+="<div class='panel-heading'>";
+							build+="<p class='text-center'><strong>"+dayOfWeek(d.getDay())+"("+(d.getMonth()+1)+"/"+d.getDate()+"/"+d.getFullYear()+")</strong></p>";
+							build+="</div>"
+							build+="<div class='panel-body'>";
+							build+="<img class='center-block' src='http://openweathermap.org/img/w/"+list[i].weather[0].icon+".png'>";
+							if(unit=="imperial"){
+								build+="<h2 class='text-center'>"+parseInt(list[i].temp.day)+"°F</h2>";
+								build+="<h3 class='text-center'>"+parseInt(list[i].temp.min)+"°F/<small>"+parseInt(list[0].temp.max)+"°F</small></h3>";
+							}else{
+								build+="<h2 class='text-center'>"+parseInt(list[i].temp.day)+"°C</h2>";
+								build+="<h3 class='text-center'>"+parseInt(list[i].temp.min)+"°C/<small>"+parseInt(list[0].temp.max)+"°C</small></h3>";
+							};
+							build+="<p class='text-center'>"+list[i].weather[0].description+"</p>";
+							build+="</div>";
+							build+="</div>";
+							build+="</div>";
+						}
+						myMap(data.city.coord.lat,data.city.coord.lon);
+						document.getElementById("weather").innerHTML = build;
+
+					});
+				};
+			}
+			// Get day of the week based on given day
+			function dayOfWeek(day){
+				if(day == 0){
+					return "Sunday";
+				}else if(day == 1){
+					return "Monday";
+				}else if(day == 2){
+					return "Tuesday";
+				}else if(day == 3){
+					return "Wednesday";
+				}else if(day == 4){
+					return "Thursday";
+				}else if(day == 5){
+					return "Friday";
+				}else if(day == 6){
+					return "Saturday";
+				}
+
+			}
+			// Create map using given lat and lon
+			function myMap(lat,lon){
+				var mapProp= {
+					center:new google.maps.LatLng(lat,lon),
+					zoom:10,
+				};
+				var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+			}
+			function today(){
+				var location = document.getElementById("location").value;
+				var days = 1;
+				var key = "&APPID=";
+
+				$.getJSON("http://api.openweathermap.org/data/2.5/forecast/daily?units="+unit+"&cnt="+days+"&q="+location+key, function(data){
+					//Choosen format is imperial so speed is in mph, temp is in fahrenheit
+
+					var name = data.name;//City name
+					var list = data.list;//List
+					var build = "";
+
+					var d = new Date(list[0].dt *1000);
+					build+="<img class='center-block' src='http://openweathermap.org/img/w/"+list[0].weather[0].icon+".png'>";
+					if(unit=="imperial"){
+						build+="<h2 class='text-center'>"+parseInt(list[0].temp.day)+"°F</h2>";
+						build+="<h3 class='text-center'>"+parseInt(list[0].temp.min)+"°F/<small>"+parseInt(list[0].temp.max)+"°F</small></h3>";
+					}else{
+						build+="<h2 class='text-center'>"+parseInt(list[0].temp.day)+"°C</h2>";
+						build+="<h3 class='text-center'>"+parseInt(list[0].temp.min)+"°C/<small>"+parseInt(list[0].temp.max)+"°C</small></h3>";
+					};
+					build+="<p class='text-center'>Pressure:"+parseInt(list[0].pressure)+"hPa</p>";
+					build+="<p class='text-center'>Humidity:"+parseInt(list[0].humidity)+"%</p>";
+					build+="<p class='text-center'>"+list[0].weather[0].description+"</p>";
+					document.getElementById("current").innerHTML = build;
+				});
+			}
+		</script>
+	</head>
+	<body>
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand">Open Weather Map</a>
+				</div>
+				<form class="navbar-form navbar-right">
+					<div class="btn-group">
+						<button type="button" id="F" class="btn btn-default" onclick="unit = 'imperial';">°F</button>
+						<button type="button" id="C" class="btn btn-default" onclick="unit = 'metric';">°C</button>
+					</div>
+					<input type="number" id="days" class="form-control" value="7">
+					<div class="input-group">
+						<input type="text" id="location" class="form-control" placeholder="Location" value="New York,NY">
+						<div class="input-group-btn">
+							<button type="button" class="btn btn-default" onclick="showWeather();today()">
+								<i class="glyphicon glyphicon-search"></i>
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</nav>
+
+		<div class="container">
+			<div id="alert">
+
+			</div>
+			<div class="jumbotron">
+				<h1>Weather</h1>
+			</div>
+		</div>
+
+		<div class="container" id="hide" style="visibility:hidden;">
+			<div class="col-md-3 col-sm-12">
+				<div class="panel panel-primary">
+					<div class="panel-heading"><strong>Current Weather</strong></div>
+					<div class="panel-body" id="current"></div>
+				</div>
+			</div>
+
+			<div class="col-md-9 col-sm-12">
+				<div class="panel panel-primary">
+					<div class="panel-heading"><strong>Map</strong></div>
+					<div class="panel-body" id="googleMap"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container" id="weather">
+
+		</div>
+	</body>
+</html>

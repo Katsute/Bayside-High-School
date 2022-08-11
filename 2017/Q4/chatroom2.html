@@ -1,0 +1,114 @@
+<html>
+    <head>
+           <style>
+               #userPhoto{
+                   width:60px;
+                   border-radius:50%;
+                   box-shadow:2px 2px 2px black;
+               }
+               #userName{
+                   font-family:Arial;
+                   font-size:32pt;
+                   color:white;
+               }
+               #banner{
+                   position:fixed;
+                   top:0px;
+                   width:100%;
+                   background-color:rgba(0,0,0,0.8);
+                   height:80px;
+               }
+               #ui{
+                   margin-top:90px;
+               }
+               img{
+                   height:60px;
+                   border-radius:50%;
+                   box-shadow:2px 2px 2px black;
+                   margin:5px;
+               }
+           </style>
+           <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase.js"></script>
+           <script>
+                var config = {
+					apiKey: "",
+					authDomain: "chat2-.firebaseapp.com",
+					databaseURL: "https://chat2-.firebaseio.com",
+                };
+                firebase.initializeApp(config);
+
+                var database = firebase.database().ref()
+                var auth = firebase.auth();
+                var provider = new firebase.auth.GoogleAuthProvider();
+
+                var user, data;
+
+                //********* AUTHENTICATION *********
+                firebase.auth().onAuthStateChanged(function(result) {
+                    if (result) {
+                        // User is signed in.
+                        user = result;
+                        document.getElementById("userName").innerHTML = user.displayName;
+                        document.getElementById("userPhoto").src = user.photoURL;
+                        displayChatroom(); // Call up Display if user is authenticated
+
+                    } else {
+                        // No user is signed in.
+                        auth.signInWithPopup(provider).then(function(result) {
+                            user = result.user;
+                            console.log("Authenticated successfully");
+                        }).catch(function(error) {
+                            // Handle Errors here.
+							});
+                    }
+                });
+
+                window.onunload = function(){
+                    firebase.auth().signOut().then(function() {
+                    // Sign-out successful.
+                    }).catch(function(error) {
+                    // An error happened.
+                    });
+                }
+
+			//***** FUNCTION TO SUBMIT INFO TO DB ******
+                function submit(){
+                    var m = document.getElementById("message").value;
+
+                    database.child("MKFC4TC").push(
+                            {
+                            "user": user.displayName,
+                            "message": m,
+                            "photo": user.photoURL
+                            }
+                    );
+                }
+
+			//***** FUNCTION TO RETRIEVE & DISPLAY INFO FROM DB ******
+                function displayChatroom(){
+                    database.child("MKFC4TC").on('value', function(snapshot){
+                        var data = snapshot.val();
+                        var build ="";
+                        for(var key in data){
+                            build += "<img src=' "+ data[key].photo +" '>";
+                            build += data[key].user + ": " + data[key].message + "<hr>";
+                        }
+                        document.getElementById("messageBoard").innerHTML = build;
+                    })
+                }
+
+    </script>
+    </head>
+    <body>
+        <div id="banner">
+            <img id="userPhoto" src="">
+            <span id="userName"></span>
+            <span id="logout">&times;</span>
+        </div>
+        <div id="ui">
+            <input type="text" id="message" placeholder="Enter Message">
+            <button onclick="submit()">Submit</button>
+        </div>
+        <div id="messageBoard"></div>
+    </body>
+</html>

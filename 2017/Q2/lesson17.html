@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			*{
+				font-family: Arial;
+				font-variant: small-caps;
+			}
+			#disc{
+				color: red;
+			}
+		</style>
+		<script>
+			function adjBill(){
+			var bill = parseFloat(document.getElementById("bill").value);
+			var divDisc = document.getElementById("disc")
+			var divFin = document.getElementById("finalBill")
+			if(bill >50){
+				var disc = bill * 0.1;
+				var finalAmt = bill - disc;
+				divDisc.innerHTML = "-$" + disc;
+				divFin.innerHTML = "$" + finalAmt;
+				}
+			else{
+				divDisc.innerHTML = "No Discount";
+				divFin.innerHTML = "$" + bill;
+				}
+			}
+		</script>
+	</head>
+
+	<body>
+		<input type="text" id="bill" placeholder="Enter Bill Amount">
+		<button onclick="adjBill()"> Adjust Bill </button>
+		<div id="disc"></div>
+		<div id="finalBill"></div>
+	</body>
+<html>

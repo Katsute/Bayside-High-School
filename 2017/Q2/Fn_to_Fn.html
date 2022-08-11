@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script>
+		var numbers = [];
+		function submit(){
+			var num = document.getElementById("num").value;
+			if(num != ""){
+					numbers.push(num);
+					//Add value of num to array number
+			}
+			//fn display() requires parameters 'id' and 'msg'
+			display("container","Average = "+avg());
+			//					  Requests fn avg() and returned value is avg
+		}												//  ^
+		function avg(){									//	|
+			var sum = 0;								//  |
+			for(i = 0; i < numbers.length; i++){		//	|
+				sum += parseFloat(numbers[i]);			//	|
+			}											//	|
+			var avg = sum/numbers.length;				//	|
+			return avg;									//	|
+			//Gives value of avg to called -----------------'
+		}
+		function display(id,msg){
+			document.getElementById(id).innerHTML = msg;
+			//Uses parameter of id and msg
+		}
+		</script>
+	</head>
+	<body>
+		<input type="number" id="num" placeholder="Enter number">
+		<button onclick="submit()">Submit number</button>
+		<div id="container"></div>
+	</body>
+</html>

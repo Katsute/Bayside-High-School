@@ -1,0 +1,144 @@
+<html>
+	<head>
+		<title>Cold War</title>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.3.0/c3.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.3.0/c3.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
+
+		<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key="></script>
+		<script>
+			var config = {
+				apiKey: "",
+				authDomain: "tutorial-website-project-.firebaseapp.com",
+				databaseURL: "https://tutorial-website-project-.firebaseio.com",
+				projectId: "tutorial-website-project-",
+				storageBucket: "tutorial-website-project-.appspot.com",
+				messagingSenderId: "181401256030"
+			};
+			firebase.initializeApp(config);
+
+			function myMap(latn,lonn,divid){
+				var mapProp= {
+					center:new google.maps.LatLng(latn,lonn),
+					zoom:10,
+				};
+				var map=new google.maps.Map(document.getElementById(divid),mapProp);
+				//
+				var marker = new google.maps.Marker({
+					position: {lat: latn, lng: lonn},
+					map: map
+				});
+				//
+			};
+		</script>
+
+		<style>
+			#map{
+				height:300px;
+			}
+		</style>
+	</head>
+	<body onload="myMap(52.5200,13.4050,'map')">
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">Cold War</a>
+				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="../topics.html">Topics</a></li>
+					<li><a href="../test.html">Test</a></li>
+					<li><a href="../about.html">About</a></li>
+				</ul>
+			</div>
+		</nav>
+		<div class="container">
+			<div class="col-md-4">
+				<h1>The Berlin Wall</h1>
+				<div class="panel panel-primary">
+					<div class="panel-heading">Location</div>
+					<div class="panel-body" id="map"></div>
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading">The Berlin Wall</div>
+					<div class="panel-body">
+						<img style="width:100%;" src="http://cdn.history.com/sites/2/2015/02/ask-how-long-berlin-wall-120775557-E.jpeg">
+					</div>
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading">The Berlin Airlift</div>
+					<div class="panel-body">
+						<img style="width:100%;" src="https://s3.amazonaws.com/static.history.state.gov/milestones/berlin-airlift.jpg">
+					</div>
+				</div>
+			</div>
+			<div class="col-md-8">
+				<h2 id="background">Background</h2>
+					<blockquote>
+						<p>"On August 13, 1961, the Communist government of the German Democratic Republic (GDR, or East Germany)
+						began to build a barbed wire and concrete "Antifascistischer Schutzwall," or "antifascist bulwark," between
+						East and West Berlin. The official purpose of this Berlin Wall was to keep Western "fascists" from entering
+						East Germany and undermining the socialist state, but it primarily served the objective of stemming mass defections
+						from East to West. The Berlin Wall stood until November 9, 1989, when the head of the East German Communist Party announced
+						that citizens of the GDR could cross the border whenever they pleased. That night, ecstatic crowds swarmed the wall. Some
+						crossed freely into West Berlin, while others brought hammers and picks and began to chip away at the wall itself. To this
+						day, the Berlin Wall remains one of the most powerful and enduring symbols of the Cold War.</p><br>
+						<p>That night, Premier Khrushchev gave the East German government permission to stop the flow of emigrants by
+						closing its border for good. In just two weeks, the East German army, police force and volunteer construction workers
+						had completed a makeshift barbed wire and concrete block wall–the Berlin Wall–that divided one side of the city from the other.
+						Before the wall was built, Berliners on both sides of the city could move around fairly freely: They crossed the East-West border
+						to work, to shop, to go to the theater and the movies. Trains and subway lines carried passengers back and forth. After the wall
+						was built, it became impossible to get from East to West Berlin except through one of three checkpoints: at Helmstedt
+						("Checkpoint Alpha" in American military parlance), at Dreilinden ("Checkpoint Bravo") and in the center of Berlin at
+						Friedrichstrasse ("Checkpoint Charlie"). (Eventually, the GDR built 12 checkpoints along the wall.) At each of the checkpoints,
+						East German soldiers screened diplomats and other officials before they were allowed to enter or leave. Except under special circumstances,
+						travelers from East and West Berlin were rarely allowed across the border."<p>
+						<footer>History.com</footer>
+					</blockquote>
+				<h2 id="history">History</h2>
+					<blockquote>
+						<p>"The construction of the Berlin Wall did stop the flood of refugees from East to West, and it did defuse the crisis over Berlin.
+						(Though he was not happy about it, President Kennedy conceded that "a wall is a hell of a lot better than a war.") Over time, East German
+						officials replaced the makeshift wall with one that was sturdier and more difficult to scale. A 12-foot-tall, 4-foot-wide mass of reinforced
+						concrete was topped with an enormous pipe that made climbing over nearly impossible. Behind the wall on the East German side was a so-called
+						"Death Strip": a gauntlet of soft sand (to show footprints), floodlights, vicious dogs, trip-wire machine guns and patrolling soldiers with
+						orders to shoot escapees on sight.In all, at least 171 people were killed trying to get over, under or around the Berlin Wall.
+						Escape from East Germany was not impossible, however: From 1961 until the wall came down in 1989, more than 5,000 East Germans
+						(including some 600 border guards) managed to cross the border by jumping out of windows adjacent to the wall, climbing over the barbed wire,
+						flying in hot air balloons, crawling through the sewers and driving through unfortified parts of the wall at high speeds."</p>
+						<footer>History.com</footer>
+					</blockquote>
+				<h2 id="airlift">Airlift</h2>
+					<blockquote>
+						<p>"At the end of the Second World War, U.S., British, and Soviet military forces divided and occupied Germany. Also divided into occupation zones,
+						Berlin was located far inside Soviet-controlled eastern Germany. The United States, United Kingdom, and France controlled western portions of the city,
+						while Soviet troops controlled the eastern sector. As the wartime alliance between the Western Allies and the Soviet Union ended and friendly relations
+						turned hostile, the question of whether the western occupation zones in Berlin would remain under Western Allied control or whether the city would be absorbed
+						into Soviet-controlled eastern Germany led to the first Berlin crisis of the Cold War. The crisis started on June 24, 1948, when Soviet forces blockaded rail,
+						road, and water access to Allied-controlled areas of Berlin. The United States and United Kingdom responded by airlifting food and fuel to Berlin from Allied airbases
+						in western Germany. The crisis ended on May 12, 1949, when Soviet forces lifted the blockade on land access to western Berlin."</p>
+						<footer>History.state.gov</footer>
+					</blockquote>
+				<h2 id="collapse">Collapse</h2>
+					<blockquote>
+						<p>"On November 9, 1989, as the Cold War began to thaw across Eastern Europe, the spokesman for East Berlin’s Communist Party announced a change
+						in his city’s relations with the West. Starting at midnight that day, he said, citizens of the GDR were free to cross the country’s borders.
+						East and West Berliners flocked to the wall, drinking beer and champagne and chanting "Tor auf!" ("Open the gate!"). At midnight, they flooded
+						through the checkpoints.More than 2 million people from East Berlin visited West Berlin that weekend to participate in a
+						celebration that was, one journalist wrote, "the greatest street party in the history of the world." People used hammers and picks to knock away
+						chunks of the wall–they became known as "mauerspechte," or "wall woodpeckers"—while cranes and bulldozers pulled down section after section. Soon
+						the wall was gone and Berlin was united for the first time since 1945. "Only today," one Berliner spray-painted on a piece of the wall,is the
+						war really over.The reunification of East and West Germany was made official on October 3, 1990, almost one year after the fall of the Berlin Wall."</p>
+						<footer>History.com</footer>
+					</blockquote>
+			</div>
+		</div>
+	</body>
+</html>

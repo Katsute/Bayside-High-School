@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<style>
+
+		</style>
+		<script src="resources_js.js">
+		//Import data frome external file
+		</script>
+		<script>
+			//	1
+			//           /  An Array  \
+			var grade = [100,90,85,72];
+			var total = 0; var avg = 0;
+			function grades(){
+				for(i=0;i<grade.length;i++){
+					total += grade[i];
+				}
+				avg = total/grade.length;
+				document.getElementById("output").innerHTML = avg;
+			}
+			//	2
+			//			 /Key : Value  Key : Value\
+			var person = {"weight":120,"height":63}
+			function json_person(){
+				console.log("var person is "+person);//List properties of person
+				console.log("property of person.weight is "+person.weight);
+				console.log("property of person.height is "+person.height);
+			}
+			//	3
+			var build="";
+			function init(){
+				for(i=0;i<data.resources.length;i++){
+					build += "<button><img src='"+data.resources[i].image+"'></button>"
+					//Use data from external file
+				}
+			document.getElementById("data").innerHTML = build;
+			}
+		</script>
+	</head>
+	<body onload="grades();json_person();init()">
+		<div id="output"></div>
+		<div id="data"></div>
+	</body>
+</html>

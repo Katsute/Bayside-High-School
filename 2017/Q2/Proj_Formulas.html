@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			*{
+				font-family: Arial;
+				font-variant: small-caps;
+			}
+			div{
+				padding: 10px 10px 10px 10px
+			}
+			#fma{
+				background-color: #66ff99	
+			}
+			#dmv{
+				background-color: #66ccff
+			}
+			#alwh{
+				background-color: #ffff66
+			}
+			#pi{
+				background-color: #ff5050
+			}
+		</style>
+		<script>
+			function fma(){
+				var n1 = document.getElementById("fma1");
+				var n2 = document.getElementById("fma2");
+				var op = document.getElementById("fmaO");
+				var ans = parseFloat(n1.value) * parseFloat(n2.value); //calculation
+				op.innerHTML = parseFloat(n1.value) + " x " + parseFloat(n2.value) + " = " + ans; //output
+			}
+			function dmv(){
+				var n1 = document.getElementById("dmv1");
+				var n2 = document.getElementById("dmv2");
+				var op = document.getElementById("dmvO");
+				var ans = parseFloat(n1.value) / parseFloat(n2.value); //calculation
+				op.innerHTML = parseFloat(n1.value) + " / " + parseFloat(n2.value) + " = " + ans; //output
+			}
+			function alwh(){
+				var n1 = document.getElementById("alwh1");
+				var n2 = document.getElementById("alwh2");
+				var n3 = document.getElementById("alwh3");
+				var op = document.getElementById("alwhO");
+				var ans = parseFloat(n1.value) * parseFloat(n2.value) * parseFloat(n3.value); //calculation
+				op.innerHTML = parseFloat(n1.value) + " x " + parseFloat(n2.value) + " x " + parseFloat(n3.value) +  " = " + ans; //output
+			}
+			function pi(){
+				var n1 = document.getElementById("r");
+				var op = document.getElementById("piO");
+				var ans = Math.PI * Math.pow(parseFloat(n1.value),"2"); //calculation
+				op.innerHTML = "π" + parseFloat(n1.value) + "^2" +" = " + ans; //output
+			}
+		</script>
+	</head>
+	<body>
+		<hr>
+		<div id="fma">
+			<p> Force = Mass x Acceleration </p>
+			<input type="text" placeholder="Mass" id="fma1">
+			<input type="text" placeholder="Acceleration" id="fma2">
+			<button onclick="fma()" > Solve </button>
+			<div id="fmaO" >.</div>
+		</div>
+		<hr>
+		<div id="dmv">
+			<p> Density = Mass / Volume </p>
+			<input type="text" placeholder="Mass" id="dmv1">
+			<input type="text" placeholder="Volume" id="dmv2">
+			<button onclick="dmv()" > Solve </button>
+			<div id="dmvO" >.</div>
+		</div>
+		<hr>
+		<div id="alwh">
+			<p> Area = Length x Width x Height </p>
+			<input type="text" placeholder="Length" id="alwh1">
+			<input type="text" placeholder="Width" id="alwh2">
+			<input type="text" placeholder="Height" id="alwh3">
+			<button onclick="alwh()" > Solve </button>
+			<div id="alwhO" >.</div>
+		</div>
+		<hr>
+		<div id="pi">
+			<p> Area = πr^2 </p>
+			<input type="text" placeholder="Radius" id="r">
+			<button onclick="pi()" > Solve </button>
+			<div id="piO" >.</div>
+		</div>
+		<hr>
+	</body>
+</html>

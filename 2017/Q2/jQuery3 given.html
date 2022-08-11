@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+		#container div{
+		width:120px;	height:300px;	padding:10px;
+		float:left;	box-shadow:5px 5px 5px grey;
+		border-radius:10px;	margin:10px;
+		}
+		#container img{	width:100px;	margin:10px;
+		}
+		#container a{
+		text-decoration:none;	background-color:blue;
+		border-radius:10px;	box-shadow:5px 5px 5px grey;
+		color:white;	padding:10px;
+		}
+		</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script>
+			function display(){
+			var movie = document.getElementById("movie").value
+			$.getJSON("http://www.omdbapi.com/?s=" + movie, function(data){
+				var build = "";
+
+				for(i = 0; i < data.Search.length; i++){
+					var title = data.Search[i].Title
+					var id = data.Search[i].imdbID
+					var image = data.Search[i].Poster
+					// show title and image. Click on text 'View Info' to call 2nd fn that
+					//displays imdbID in alert box
+					build += "<div>"
+					build += "<h3>" + title + "</h3>"
+					build += "<img src=' "+image+" '>"
+					//build += "<a href='http://www.omdbapi.com/?i=" + id + "'>View info</a>"
+					console.log("<a onclick='showMovie(" +id+ ")'>View info</a>")
+					build += "<a onclick=' showMovie(\" " +id+ " \" )'>View info</a>";
+					build += "</div>"
+				}
+				document.getElementById("container").innerHTML = build;
+				});
+			}
+			function showMovie(id){
+				alert(id);
+			}
+		</script>
+	</head>
+	<body>
+		<input type="text" id="movie" placeholder="Enter Movie" value="Batman">
+		<button onclick="display()">Get JSON data</button>
+		<div id="container"></div>
+	</body>
+</html>

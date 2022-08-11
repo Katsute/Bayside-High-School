@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			*{
+				font-family: Arial Black;
+			}
+			body{
+				text-align: center;
+				padding-top: 50%;
+			}
+		</style>
+		<script>
+			function chkPswd(){
+				var userPswd = document.getElementById("userPswd").value;
+				if(userPswd == "24#b"){
+					alert('Welcome');
+				}
+				else
+					alert('Access Denied');
+			}
+		</script>
+	</head>
+
+	<body>
+		<input type="text" id="userPswd" placeholder="Enter Password">
+		<button onclick="chkPswd()">Login</button>
+	</body>
+</html>

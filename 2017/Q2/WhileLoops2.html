@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<style>
+
+		</style>
+		<script>
+			function play(){
+				var qnt_t = 0, qnt_g = 1;
+				var qnt_n = parseInt((Math.random()*10)+1);
+				console.log(qnt_n);
+				var pr = prompt("What's the secret number? ");
+				while(pr != qnt_n){
+					if( pr > qnt_n ){
+						pr = prompt("Incorrect, The number is smaller. ");
+					}else{
+						pr = prompt("Incorrect, The number is larger. ");
+					}
+					qnt_g++
+				}
+				alert("Correct, "+qnt_n+" was the secret number. | You guessed "+qnt_g+" times. ");
+			}
+		</script>
+	</head>
+	<body>
+		<button onclick="play()">Play</button>
+	</body>
+</html>

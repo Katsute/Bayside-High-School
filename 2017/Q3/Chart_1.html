@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Chart 1</title>
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.3.0/c3.min.css">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.3.0/c3.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+
+		<meta charset="utf-8">
+
+		<style>
+
+		</style>
+
+		<script>
+			function displayGroup(){
+				var chart = c3.generate({
+					bindto: '#myChart',
+					data: {
+						columns: [
+							['temp', 30, 200, 100, 400, 150, 250],
+							['humidity', 50, 20, 10, 40, 15, 30]
+						],
+					type: "bar"
+					}
+				});
+			}
+		</script>
+	</head>
+	<body onload="displayGroup()">
+		<div id="myChart"></div>
+	</body>
+</html>

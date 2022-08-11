@@ -1,0 +1,143 @@
+<html>
+	<head>
+		<style>
+			#eq{
+				text-align:center;
+				background-color: #ffff99;
+				margin: 0px 25%;
+				padding: 10px;
+			}
+			#btn{
+				text-align:center;
+				background-color: #ffd480;
+				margin: 0px 25%;
+				padding: 10px;
+			}
+			#imgd{
+				text-align:center;
+				background-color: #ffd480;
+				margin: 0px 25%;
+				padding: 10px;
+			}
+			img{
+				width: 200px;
+				height: 200px;
+			}
+		</style>
+		<script>
+			function load(){
+				min = parseFloat(document.getElementById("min").value);
+				max = parseFloat(document.getElementById("max").value);
+				n1 = Math.round(Math.random()*10);
+				n2 = Math.round(Math.random()*10);
+				op = Math.round(Math.random()*10);
+				//Removing var to make variable global
+				ndiv = document.getElementById("num");
+				dans = document.getElementById("ans");
+				ansr = document.getElementById("ansr");
+				imgsrc = document.getElementById("imgid");
+				//Randomized Operation
+				if(op <= 3){
+					ans = n1 + n2;
+					ndiv.innerHTML = n1 + " + " + n2;
+					//Display operation
+					ansr.value = "";
+					//Clear Input
+				}else if(op <= 5){
+					ans = n1 - n2;
+					ndiv.innerHTML = n1 + " - " + n2;
+					//Display operation
+					ansr.value = "";
+					//Clear Input
+				}else if(op <= 7){
+					ans = n1 * n2;
+					ndiv.innerHTML = n1 + " * " + n2;
+					//Display operation
+					ansr.value = "";
+					//Clear Input
+				}else{
+					ans = n1 / n2;
+					ndiv.innerHTML = n1 + " / " + n2;
+					//Display operation
+					ansr.value = "";
+					//Clear Input
+				}
+			}
+			function check(){
+				if(ansr.value == ans){
+					dans.innerHTML = "Correct";
+					imgsrc.src = "http://3mp.vn/dich-vu/images/tick-green.png"
+				}else{
+					dans.innerHTML = "Incorrect. The answer is " + ans
+					imgsrc.src = "http://www.procliparts.com/resize/900w/cliparts/pele/UqBi89iB5-circle-x.png"
+				}
+			}
+			function generate(){
+				min = parseFloat(document.getElementById("min").value);
+				max = parseFloat(document.getElementById("max").value);
+				n1 = Math.round(Math.random()*100);
+				n2 = Math.round(Math.random()*100);
+				op = Math.round(Math.random()*10);
+				//Minimum / Maximum
+				if(n1 >max){
+					n1 = max
+				}else if(n1 <min){
+					n1 = min
+				}
+				if(n2 >max){
+					n2 = max
+				}else if(n2 <min){
+					n2 = min
+				}
+				//Removing var to make variable global
+				ndiv.innerHTML = n1 + " + " + n2;
+				dans.innerHTML = ".";
+				imgsrc.src = "https://dev.w3.org/2007/mobileok-ref/test/data/ROOT/GraphicsForSpacingTest/1/largeTransparent.gif";
+				//Randomized Operation
+				if(op <= 3){
+					ans = n1 + n2;
+					ndiv.innerHTML = n1 + " + " + n2;
+					//Display operation
+					ansr.value = "";
+					//Clear Input
+				}else if(op <= 5){
+					ans = n1 - n2;
+					ndiv.innerHTML = n1 + " - " + n2;
+					//Display operation
+					ansr.value = "";
+					//Clear Input
+				}else if(op <= 7){
+					ans = n1 * n2;
+					ndiv.innerHTML = n1 + " * " + n2;
+					//Display operation
+					ansr.value = "";
+					//Clear Input
+				}else{
+					ans = n1 / n2;
+					ndiv.innerHTML = n1 + " / " + n2;
+					//Display operation
+					ansr.value = "";
+					//Clear Input
+				}
+			}
+		</script>
+	</head>
+	<body onload="load()">
+		<div id="eq">
+			<input id="min" type="text" placeholder="Minimum">
+			<input id="max" type="text" placeholder="Maximum"><hr>
+			<div id="num"> +  =</div>
+			<input id="ansr" type="text" placeholder="Answer">
+			<button onclick="check()">Check</button>
+
+			<div id="ans">.</div>
+			<hr>
+		</div>
+		<div id="btn">
+			<button onclick="generate()">Generate</button>
+		</div>
+		<div id="imgd">
+		<img id="imgid" src="https://dev.w3.org/2007/mobileok-ref/test/data/ROOT/GraphicsForSpacingTest/1/largeTransparent.gif">
+		</div>
+	</body>
+</html>

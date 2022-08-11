@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			#weather{
+				width:150px;
+				height:280px;
+				float:left;
+				margin:5px;
+				background-color:#ffffff;
+				text-align:center;
+				border-bottom-style:solid;
+				border-bottom-width:px;
+				border-bottom-color:#b3b3b3;
+
+				border-right-style:hidden;
+				border-right-width:5px;
+			}
+			#weather img{
+				height:75px;
+				width:75px;
+			}
+			#selection{
+				width:500px;
+				height:260px;
+				margin:5px;
+				padding:10px;
+				background-color:#ffffff;
+				text-align:center;
+				border-bottom-style:solid;
+				border-bottom-width:px;
+				border-bottom-color:#b3b3b3;
+
+				border-right-style:hidden;
+				border-right-width:5px;
+			}
+			#selection img{
+				height:75px;
+				width:75px;
+			}
+			body{
+				background-color:#d9d9d9;
+				font-family:Arial;
+			}
+			#container{
+				overflow:hidden;
+			}
+			#extended{
+				background-color:#cccccc;
+				overflow:hidden;
+			}
+			#extended:hover{
+				cursor:pointer;
+			}
+			#selection{
+				overflow:hidden;
+			}
+		</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script>
+			function showWeather(){
+				var location = document.getElementById("location").value;
+
+				if(location == ""){
+					alert("Please specify a location");
+				}
+
+				var days = parseInt(document.getElementById("days").value);
+				var key = "&APPID=";
+				$.getJSON("http://api.openweathermap.org/data/2.5/forecast/daily?units=imperial&cnt="+days+"&q="+location+key, function(data){
+					//Choosen format is imperial so speed is in mph, temp is in fahrenheit
+
+					var name = data.name;//City name
+					var list = data.list;//List
+					var build = "";
+					build+="<h2 style='text-align:center';>"+data.cnt+" day forcast for "+data.city.name+"</h2>";
+					for(var i=0;i<list.length;i++){
+						var d = new Date(list[i].dt *1000);
+						build+="<div id='weather'>";
+						build+="<h3>"+dayOfWeek(d.getDay())+"<br>("+(d.getMonth()+1)+"/"+d.getDate()+"/"+d.getFullYear()+")</h3>";
+						build+="<img src='http://openweathermap.org/img/w/"+list[i].weather[0].icon+".png'>";
+						build+="<h2>"+parseInt(list[i].temp.day)+"°F</h2>"
+						build+="<p>"+list[i].weather[0].description+"</p>";
+						build+="<div id='extended' onclick='extended("+i+")'>More Details</div>"
+						build+="</div>";
+					}
+
+					document.getElementById("container").innerHTML = build;
+				});
+			}
+			function dayOfWeek(day){
+				if(day == 0){
+					return "Sunday";
+				}else if(day == 1){
+					return "Monday";
+				}else if(day == 2){
+					return "Tuesday";
+				}else if(day == 3){
+					return "Wednesday";
+				}else if(day == 4){
+					return "Thursday";
+				}else if(day == 5){
+					return "Friday";
+				}else{
+					return "Saturday";
+				}
+
+			}
+			function extended(day){
+				var location = document.getElementById("location").value;
+				var i = parseInt(day)
+				var key = "&APPID=";
+				$.getJSON("http://api.openweathermap.org/data/2.5/forecast/daily?units=imperial&cnt=16&q="+location+key, function(data){
+					var name = data.name;//City name
+					var list = data.list;//List
+					var build = ""
+					var d = new Date(list[i].dt *1000);
+					build+="<div id='selection'>";
+					build+="<div style='float:left;width:50%;'>";
+					build+="<h3>"+dayOfWeek(d.getDay())+"<br>("+(d.getMonth()+1)+"/"+d.getDate()+"/"+d.getFullYear()+")</h3>";
+					build+="<img src='http://openweathermap.org/img/w/"+list[i].weather[0].icon+".png'>";
+					build+="<h2>"+parseInt(list[i].temp.day)+"°F</h2>"
+					build+="<p>"+list[i].weather[0].description+"</p>";
+					build+="</div>";
+					build+="<div style='float:right;width:50%;'>";
+					build+="<h3> Humidity: "+list[i].humidity+"%</h3>";
+					build+="<h3> Pressure: "+list[i].pressure+"hPa</h3>";
+					build+="<h3> Wind Speed: "+list[i].speed+"mph</h3>";
+					build+="<h3> Cloudiness: "+list[i].clouds+"%</h3>";
+					build+="</div>";
+
+					document.getElementById("selection").innerHTML = build;
+				})
+			}
+		</script>
+	</head>
+	<body>
+		<input type="text" id="location" placeholder="Enter City" value="New York,NY">
+		<input type="number" id="days" placeholder="Days" value="7">
+		<button onclick="showWeather();extended(0);">Get weather data</button>
+		<div id="current"></div>
+		<br>
+		<div id="selection"></div>
+		<br>
+		<div id="container"></div>
+	</body>
+</html>

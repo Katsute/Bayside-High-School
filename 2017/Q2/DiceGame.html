@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+		*{
+			text-align:center;
+		}
+		img{
+			width: 100px;
+			height: 100px;
+		}
+		</style>
+		<script>
+			function rollDice(){
+				//Range between 1-7
+				n1 = Math.floor(Math.random()*6 + 1);
+				n2 = Math.floor(Math.random()*6 + 1);
+				sum = n1 + n2;
+				num = document.getElementById("num");
+				imgsrc = document.getElementById("imgsrc");
+				//If sum equals 7 OR 11
+				if(sum == 7 || sum == 11){
+					num.innerHTML = "You got " + n1 + " and " + n2 + ". You win!";
+					imgsrc.src = "http://3mp.vn/dich-vu/images/tick-green.png"
+				}else{
+					num.innerHTML = "You got " + n1 + " and " + n2 + ". You lose.";
+					imgsrc.src = "http://www.procliparts.com/resize/900w/cliparts/pele/UqBi89iB5-circle-x.png"
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<h1> Roll to get a 7 or an 11 to win!</h1>
+		<button onclick="rollDice()">Roll</button><br><br>
+		<div id="num"></div><br>
+		<img id="imgsrc" src="https://dev.w3.org/2007/mobileok-ref/test/data/ROOT/GraphicsForSpacingTest/1/largeTransparent.gif">
+	</body>
+</html>

@@ -1,0 +1,56 @@
+<html>
+	<head>
+		<style>
+			#eq{
+				text-align:center;
+				background-color: #ffff99;
+				margin: 0px 25%;
+				padding: 10px;
+			}
+			#btn{
+				text-align:center;
+				background-color: #ffd480;
+				margin: 0px 25%;
+				padding: 10px;
+			}
+		</style>
+		<script>
+			function load(){
+				n1 = Math.round(Math.random()*10);
+				n2 = Math.round(Math.random()*10);
+				ans = n1 + n2;
+				ndiv = document.getElementById("num");
+				dans = document.getElementById("ans");
+				ansr = document.getElementById("ansr");
+
+				ndiv.innerHTML = n1 + " + " + n2;
+			}
+			function check(){
+				if(ansr.value == ans){
+					dans.innerHTML = "Correct";
+				}else{
+					dans.innerHTML = "Incorrect. The answer is " + ans
+				}
+			}
+			function generate(){
+				n1 = Math.round(Math.random()*10);
+				n2 = Math.round(Math.random()*10);
+				ans = n1 + n2;
+				ndiv.innerHTML = n1 + " + " + n2;
+				dans.innerHTML = "."
+				ansr.value = ""
+			}
+		</script>
+	</head>
+	<body onload="load()">
+		<div id="eq">
+			<div id="num"> +  =</div>
+			<input id="ansr" type="text">
+			<button onclick="check()">Check</button>
+			<div id="ans">.</div>
+		</div>
+		<div id="btn">
+			<button onclick="generate()">Generate</button>
+		</div>
+	</body>
+</html>

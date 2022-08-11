@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+
+		</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script>
+			function showWeather(){
+				var location = document.getElementById("location").value;
+				var key = "&APPID=";
+				$.getJSON("http://api.openweathermap.org/data/2.5/weather?units=imperial&q="+location+key, function(data){
+					//Choosen format is imperial so speed is in mph, temp is in fahrenheit
+					console.log(data); // Console shows One object with many keys
+					var name = data.name;//City name
+					var coordsLat = data.coord.lat;
+					var coordsLon = data.coord.lon;
+					var icon = data.weather[0].icon;//Icon
+					var iconSrc = "http://openweathermap.org/img/w/"+icon+".png"
+					var desc = data.weather[0].description;//Description
+					var temp = data.main.temp;//Temperature in Fahrenheit
+					var humid = data.main.humidity;//Humidity
+					var windSpeed = data.wind.speed;//Speed in mph
+
+					var build = "";
+					build += "<div id='Weather'>";
+					build += "<h3>"+name+"("+coordsLat+" lat, "+coordsLon+" lon )</h3>";
+					build += "<img src="+iconSrc+">";
+					build += "<p>"+desc+"</p>";
+					build += "<p> Temperature: "+temp+" *F</p>";
+					build += "<p> Humidity: "+humid+"%</p>";
+					build += "<p> Wind Speed: "+windSpeed+" mph</p>";
+					build += "</div>";
+
+					document.getElementById("container").innerHTML = build;
+
+				});
+			}
+		</script>
+	</head>
+	<body>
+		<input type="text" id="location" placeholder="Enter City" value="Bayside,NY">
+		<button onclick="showWeather()">Get weather data</button>
+		<div id="container"></div>
+	</body>
+</html>

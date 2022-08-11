@@ -1,0 +1,59 @@
+<html>
+	<head>
+		<style>
+			#ques{
+				background-color:#99ff99;
+				width:315;
+				height:57px;
+				margin-left:auto;
+				margin-right:auto;
+				text-align:center;
+			}
+			#rand{
+				background-color:#99ff99;
+				width:310px;
+				height:100px;
+				margin-left:auto;
+				margin-right:auto;
+				text-align:center;
+			}
+		</style>
+		<script>
+			function check(){
+				var input = document.getElementById("Capital").value;
+				var output = document.getElementById("Ans");
+				if(input == "Albany" || input == "ALBANY" || input == "albany"){
+					output.innerHTML = "Correct";
+				}else{
+					output.innerHTML = "Incorrect, the capital is Albany";
+				}
+			}
+			function random(){
+				var output = document.getElementById("num");
+				var build = "";
+				for(i=1;i<=50;i++){
+					var num = Math.floor(Math.random()*21)+10;
+					build += ""+num+", ";
+				}
+				output.innerHTML = build
+			}
+		</script>
+	</head>
+	<body onload="random()"">
+		<div id="Ques">
+			<br>
+			<input type="text" placeholder="Capital of New York" id="Capital">
+			<button onclick="check()">Check Answer</button>
+			<div id="Ans">
+
+			</div>
+		</div>
+		<br><br>
+		<div id="Rand">
+			<br>
+			<div id="num"">
+
+			</div>
+		</div>
+	</body>
+</html>

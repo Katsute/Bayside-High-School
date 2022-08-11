@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			*{
+				font-family: Arial Black;
+			}
+		</style>
+		<script>
+			function distance(){
+				var x1 = parseFloat(document.getElementById("x1").value);
+				var x2 = parseFloat(document.getElementById("x2").value);
+				var y1 = parseFloat(document.getElementById("y1").value);
+				var y2 = parseFloat(document.getElementById("y2").value);
+				var answer = document.getElementById("ans");
+				var d = Math.sqrt(Math.pow(x1-x2,2) + Math.pow(y1-y2,2));
+				if(d < 5){
+					answer.innerHTML = "(" + x1 + "," + y1 + ") " + ">>" + " (" + x2 + "," + y2 + ") | Distance is " + d;
+					alert("Points are too close");
+				}
+				else{
+					answer.innerHTML = "(" + x1 + "," + y1 + ") " + ">>" + " (" + x2 + "," + y2 + ") | Distance is " + d;
+					alert("Points are fairly apart");
+				}
+			}
+		</script>
+	</head>
+
+	<body>
+		<input type="text" placeholder="x1" id="x1">
+		<input type="text" placeholder="y1" id="y1">
+		<br>
+		<input type="text" placeholder="x2" id="x2">
+		<input type="text" placeholder="y2" id="y2">
+		<br>
+		<button onclick="distance()">Distance</button>
+		<div id="ans">x</div>
+	</body>
+</html>

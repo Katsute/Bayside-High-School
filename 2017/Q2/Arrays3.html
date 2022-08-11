@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<style>
+
+		</style>
+		<script src="data.js">
+		//Import from data.js
+		</script>
+		<script>
+			function bhs(){
+			var pop = 0; var f = 0; var so = 0; var j = 0; var se = 0;
+			for(i=0;i < students.length; i++){
+				pop++;
+				if(students[i] == 9 ){
+					f++;
+				}
+				else if(students[i] == 10){
+					so++;
+				}
+				else if(students[i] == 11){
+					j++;
+				}
+				else if(students[i] == 12){
+					se++;
+				}
+			}
+			document.getElementById("f").innerHTML = "Freshmen: "+f;
+			document.getElementById("so").innerHTML = "Sophomores: "+so;
+			document.getElementById("j").innerHTML = "Juniors: "+j;
+			document.getElementById("se").innerHTML = "Seniors: "+se;
+			document.getElementById("pop").innerHTML = "Population: "+pop;
+			}
+		</script>
+	</head>
+	<body onload="bhs()">
+		<div id="f"></div>
+		<div id="so"></div>
+		<div id="j"></div>
+		<div id="se"></div>
+		<div id="pop"></div>
+	</body>
+</html>

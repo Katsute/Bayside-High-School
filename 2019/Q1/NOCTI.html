@@ -1,0 +1,282 @@
+<html>
+	<head>
+		<script>
+			var lngh_ucost = 9.99;
+			var bcts_ucost = 26.99;
+			var bmb_ucost	 = 29.99;
+			<!-- 140% -->
+			var lngh_cost = 13.99;
+			var bcts_cost = 37.79;
+			var bmb_cost  = 41.99;
+			<!-- 6% -->
+			var tax = 0.06;
+
+			var net_orders = 0;
+			var net_profit = 0;
+
+			<!-- Purchase Button -->
+			function purchase(){
+				var customer = document.getElementById("cust_name").value;
+				var address  = document.getElementById("cust_addr").value;
+				customer = (customer == null) ? "" : customer;
+				address = (address == null) ? "" : address;
+
+				// If input is blank or null set 0
+				var lngh_qnt = parseFloat(
+					(
+						document.getElementById("lngh_qnt").value == null  ||
+						document.getElementById("lngh_qnt").value == ""
+					)
+					?
+						0
+					:
+						document.getElementById("lngh_qnt").value
+				);
+				// If input is blank or null set 0
+				var bcts_qnt = parseFloat(
+					(
+						document.getElementById("bcts_qnt").value == null  ||
+						document.getElementById("bcts_qnt").value == ""
+					)
+					?
+						0
+					:
+						document.getElementById("bcts_qnt").value
+				);
+				// If input is blank or null set 0
+				var bmb_qnt = parseFloat(
+					(
+						document.getElementById("bmb_qnt").value == null  ||
+						document.getElementById("bmb_qnt").value == ""
+					)
+					?
+						0
+					:
+						document.getElementById("bmb_qnt").value
+				);
+
+				var lngh_net_ucost = lngh_qnt * lngh_ucost;
+				var bcts_net_ucost = bcts_qnt * bcts_ucost;
+				var bmb_net_ucost  = bmb_qnt * bmb_ucost;
+
+				var net_ucost = lngh_net_ucost + bcts_net_ucost + bmb_net_ucost;
+
+				var lngh_net_cost = lngh_qnt * lngh_cost;
+				var bcts_net_cost = bcts_qnt * bcts_cost;
+				var bmb_net_cost  = bmb_qnt * bmb_cost;
+
+				var subtotal = lngh_net_cost + bcts_net_cost + bmb_net_cost;
+				var tax_amnt = subtotal * tax;
+				var total    = subtotal + tax_amnt;
+
+				// Get shipping cost based of subtotal
+				var shipping = (
+						(subtotal >= 1.00 && subtotal <= 39.99) // 1.00 - 39.99
+					?
+						15.00
+					:
+						(
+							(subtotal >= 40.00 && subtotal <= 149.99) // 40.00 - 149.99
+						?
+							10.00
+						:
+							0
+						) // ^^^ 150.00+ (and 1.00-)
+				);
+				var profit = subtotal - net_ucost;
+
+				var today = new Date();
+
+				<!-- Output -->
+				var OUT = ""; var temp;
+
+				OUT += "<div class=\"width3\">";
+				OUT += "<b>" + "Customer: " + customer + "</b>";
+				OUT += "<br>"
+				OUT += "<i>" + address + "</i>";
+				OUT += "<br>"
+				OUT += "<i> Ordered at " + today + "</i>";
+				OUT += "<br>";
+
+				// Only show if ordered at least 1
+				if(lngh_qnt > 0){
+					OUT += "<br>";
+					OUT += "<i>" + "Lucy Nelson's Greatest Hits" + "</i>";
+					OUT += "<p>" + "Unit Cost - $" + lngh_ucost + "</p>";
+					OUT += "<p>" + "List Price - $" + lngh_cost + "</p>";
+					temp = round(lngh_cost - lngh_ucost);
+					OUT += "<p>" + "Profit per unit - $" + temp + "</p>";
+					OUT += "<p>" + "Quantity Ordered - " + lngh_qnt + "</p>";
+					OUT += "<p>" + "Total List Price - $" + lngh_net_cost;
+					OUT += "<br>";
+				}else{
+					OUT += "<br><br><br><br><br><br><br>";
+				}
+				// Only show if ordered at least 1
+				if(bcts_qnt > 0){
+					OUT += "<br>";
+					OUT += "<i>" + "Barry Cuda & The Sharks LIVE" + "</i>";
+					OUT += "<p>" + "Unit Cost - $" + bcts_ucost + "</p>";
+					OUT += "<p>" + "List Price - $" + bcts_cost + "</p>";
+					temp = round(bcts_cost - bcts_ucost);
+					OUT += "<p>" + "Profit per unit - $" + temp + "</p>";
+					OUT += "<p>" + "Quantity Ordered - " + bcts_qnt + "</p>";
+					OUT += "<p>" + "Total List Price - $" + bcts_net_cost;
+					OUT += "<br>";
+				}else{
+					OUT += "<br><br><br><br><br><br><br>";
+				}
+				// Only show if ordered at least 1
+				if(bmb_qnt > 0){
+					OUT += "<br>";
+					OUT += "<i>" + "Busta Move Boogies" + "</i>";
+					OUT += "<p>" + "Unit Cost - $" + bmb_ucost + "</p>";
+					OUT += "<p>" + "List Price - $" + bmb_cost + "</p>";
+					temp = round(bmb_cost - bmb_ucost);
+					OUT += "<p>" + "Profit per unit - $" + temp + "</p>";
+					OUT += "<p>" + "Quantity Ordered - " + bmb_qnt + "</p>";
+					OUT += "<p>" + "Total List Price - $" + bmb_net_cost;
+					OUT += "<br>";
+				}else{
+					OUT += "<br><br><br><br><br><br><br>";
+				}
+
+				OUT += "<br>";
+				OUT += "<p>" + "Order Subtotal (pre-tax) - $" + round(subtotal) + "</p>";
+				OUT += "<p>" + "Sales Tax (" + (tax*100) + "%) - $" + round(tax_amnt) + "</p>";
+				OUT += "<p>" + "Total with Tax - $" + round(total) + "</p>";
+				OUT += "<p>" + "Shipping Fees - $" + round(shipping) + "</p>";
+				OUT += "<br>"
+
+				temp = total + shipping;
+				OUT += "<p>" + "Order Total: $" + round(temp) + "</p>";
+				OUT += "<br>";
+				OUT += "</div>";
+
+				document.getElementById("out").innerHTML += OUT;
+
+				<!-- Company Info -->
+				net_orders += lngh_qnt;
+				net_orders += bcts_qnt;
+				net_orders += bmb_qnt;
+				net_profit += profit;
+
+				document.getElementById("info").innerHTML = "<hr><p>Cumulative Day's Orders (Quantity of Units Sold) - " + round(net_orders) + "</p><p> Cumulative Day's Profits - $" + round(net_profit) + "</p>";
+
+				clear();
+			}
+			<!-- Round 2 Places -->
+			function round(num){
+				return Math.round(num*100)/100.00;
+			}
+			<!-- Clear Inputs -->
+			function clear(){
+				document.getElementById("cust_name").value = "";
+				document.getElementById("cust_addr").value = "";
+
+				document.getElementById("lngh_qnt").value = "";
+				document.getElementById("bcts_qnt").value = "";
+				document.getElementById("bmb_qnt").value = "";
+			}
+
+			/* ////////////////////////////////////////////////////////////
+			//                        Testing Only                       //
+			//////////////////////////////////////////////////////////// */
+			<!-- Auto fills data and runs the purchase function -->
+
+			function autofillAll(){
+				autofill1();
+				purchase();
+				autofill2();
+				purchase();
+				autofill3();
+				purchase();
+			}
+
+			function autofill1(){
+				document.getElementById("cust_name").value = "Susan Smith";
+				document.getElementById("cust_addr").value = "124 W. Madison Street // Cherokee, OK 49200";
+				document.getElementById("lngh_qnt").value = 1;
+				document.getElementById("bcts_qnt").value = 2;
+				document.getElementById("bmb_qnt").value = 0;
+			}
+
+			function autofill2(){
+				document.getElementById("cust_name").value = "Reshay Thompson";
+				document.getElementById("cust_addr").value = "1 Main Street // Hometown, OK 01724";
+				document.getElementById("lngh_qnt").value = 0;
+				document.getElementById("bcts_qnt").value = 2;
+				document.getElementById("bmb_qnt").value = 2;
+			}
+
+			function autofill3(){
+				document.getElementById("cust_name").value = "George Jackson";
+				document.getElementById("cust_addr").value = "53148 Flower Road // Shawnee, OK 17901";
+				document.getElementById("lngh_qnt").value = 1;
+				document.getElementById("bcts_qnt").value = 1;
+				document.getElementById("bmb_qnt").value = 1;
+			}
+			/* ////////////////////////////////////////////////////////////
+			//                      ^ Testing Only ^                     //
+			//////////////////////////////////////////////////////////// */
+		</script>
+		<style>
+			p {
+				margin:0px;
+			}
+
+			.width3 {
+				width: 33%;
+				display:inline-block;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Input -->
+		<div>
+			<!-- Customer Info -->
+			<div>
+				<b>Customer Name: </b> <input type="text" id="cust_name">
+				<b>Address: </b> <input type="text" id="cust_addr">
+			</div>
+			<br>
+			<!-- Ordering -->
+			<div>
+				<div>
+					<div class="width3"><b>Product Name</b></div>
+					<div class="width3"><b>Cost</b></div>
+					<div class="width3"><b>Quantity</b></div>
+				</div>
+				<br>
+				<div>
+					<div class="width3">Lucy Nelson's Greatest Hits</div>
+					<div class="width3">$13.99</div>
+					<div class="width3"><input type="number" id="lngh_qnt"></div>
+				</div>
+				<br>
+				<div>
+					<div class="width3">Barry Cuda & The Sharks LIVE</div>
+					<div class="width3">$37.79</div>
+					<div class="width3"><input type="number" id="bcts_qnt"></div>
+				</div>
+				<br>
+				<div>
+					<div class="width3">Busta Move Boogies</div>
+					<div class="width3">$41.99</div>
+					<div class="width3"><input type="number" id="bmb_qnt"></div>
+				</div>
+				<br>
+				<button onclick="purchase()">Purchase</button>
+			</div>
+		</div>
+		<!-- Output -->
+		<hr>
+		<div id="out">
+
+		</div>
+		<!-- Company Profits -->
+		<div id="info">
+
+		</div>
+	</body>
+</html>

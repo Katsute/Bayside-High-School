@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("button").click(function(){
+        $.getJSON("http://www.omdbapi.com/?s=Batman", function(data){
+        	//document.write(data.Search[0].Year);
+            var build = ""
+            for(i=0;i<data.Search.length;i++){
+            	var image = data.Search[i].Poster;
+                var title = data.Search[i].Title;
+                var year = data.Search[i].Year;
+                var imdbId = data.Search[i].imdbID
+                build+="<h1>"+title+" ("+year+")</h1>";
+                build+="<p> IMDB id: "+imdbId+"</p>";
+                build+="<img style='height:100px;' src='"+image+"'><hr>";
+            }
+            document.write(build)
+        });
+    });
+});
+</script>
+</head>
+<body>
+
+<button>Get JSON data</button>
+
+<div></div>
+
+</body>
+</html>

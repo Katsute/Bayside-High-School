@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>4/21</title>
+
+		<style>
+
+		</style>
+
+		<script>
+			function canVote(){
+				var age = parseInt(document.getElementById("age").value);
+				if(age >= 18){
+					document.getElementById("output1").innerHTML = "Can Vote";
+				}else if(age < 18){
+					document.getElementById("output1").innerHTML = "Cannot Vote";
+				}else{
+					document.getElementById("output1").innerHTML = "Invalid Age";
+				}
+			}
+			function checkGrade(){
+				var grade = parseInt(document.getElementById("grade_level").value);
+				var credits = parseInt(document.getElementById("credits").value);
+				if(grade == 9 && credits >= 10){
+					document.getElementById("output2").innerHTML = "On Track";
+				}else if(grade == 10 && credits >= 20){
+					document.getElementById("output2").innerHTML = "On Track";
+				}else if(grade == 11 && credits >= 30){
+					document.getElementById("output2").innerHTML = "On Track";
+				}else if(grade == 12 && credits >= 44){
+					document.getElementById("output2").innerHTML = "Can Graduate";
+				}else{
+					document.getElementById("output2").innerHTML = "Off Track";
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<input type="text" id="age" placeholder="Enter Age">
+		<button onclick="canVote()">Check Voting Age</button>
+		<p id="output1"></p>
+		<hr>
+		<input type="text" id="grade_level" placeholder="Enter Grade">
+		<input type="text" id="credits" placeholder="Enter Credits">
+		<button onclick="checkGrade()">Check Credits</button>
+		<p id="output2"></p>
+	</body>
+</html>

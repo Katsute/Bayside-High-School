@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+
+		<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+		<script>
+			// Initialize Firebase
+			// TODO: Replace with your project's customized code snippet
+			var config = {
+				apiKey: "",
+				databaseURL: "https://chatroom.firebaseio.com/"
+			};
+			// Initialize default app
+			firebase.initializeApp(config);
+			// Get a reference to the DB service
+			var database = firebase.database().ref();
+
+			// Push info into DB
+			database.child("dataTable").push(
+				{
+					"name" : "",
+					"message" : "<i>:)</i>"
+				}
+			);
+
+			// Get info from DB > 'on'
+			var data;
+			database.child("dataTable").on(
+				'value',
+				function(snapshot){
+					data = snapshot.val();
+					for(var key in data){
+						document.write(data[key].name + ":" + data[key].message + "<hr>");
+					}
+				}
+			);
+
+		</script>
+	</head>
+	<body>
+
+	</body>
+</html>

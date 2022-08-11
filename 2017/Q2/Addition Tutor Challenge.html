@@ -1,0 +1,107 @@
+<html>
+	<head>
+		<style>
+			#eq{
+				text-align:center;
+				background-color: #ffff99;
+				margin: 0px 25%;
+				padding: 10px;
+			}
+			#btn{
+				text-align:center;
+				background-color: #ffd480;
+				margin: 0px 25%;
+				padding: 10px;
+			}
+		</style>
+		<script>
+			function load(){
+				n1 = Math.round(Math.random()*10);
+				n2 = Math.round(Math.random()*10);
+				op = Math.round(Math.random()*10);
+				//Removing var to make variable global
+				ndiv = document.getElementById("num");
+				dans = document.getElementById("ans");
+				ansr = document.getElementById("ansr");
+				//Randomized Operation
+				if(op <= 3){
+					ans = n1 + n2;
+					ndiv.innerHTML = n1 + " + " + n2;
+					//Display operation
+					ansr.value = "";
+					//Clear Input
+				}else if(op <= 5){
+					ans = n1 - n2;
+					ndiv.innerHTML = n1 + " - " + n2;
+					//Display operation
+					ansr.value = "";
+					//Clear Input
+				}else if(op <= 7){
+					ans = n1 * n2;
+					ndiv.innerHTML = n1 + " * " + n2;
+					//Display operation
+					ansr.value = "";
+					//Clear Input
+				}else{
+					ans = n1 / n2;
+					ndiv.innerHTML = n1 + " / " + n2;
+					//Display operation
+					ansr.value = "";
+					//Clear Input
+				}
+			}
+			function check(){
+				if(ansr.value == ans){
+					dans.innerHTML = "Correct";
+				}else{
+					dans.innerHTML = "Incorrect. The answer is " + ans
+				}
+			}
+			function generate(){
+				n1 = Math.round(Math.random()*10);
+				n2 = Math.round(Math.random()*10);
+				op = Math.round(Math.random()*10);
+				//Removing var to make variable global
+				ndiv.innerHTML = n1 + " + " + n2;
+				dans.innerHTML = ".";
+				//Randomized Operation
+				if(op <= 3){
+					ans = n1 + n2;
+					ndiv.innerHTML = n1 + " + " + n2;
+					//Display operation
+					ansr.value = "";
+					//Clear Input
+				}else if(op <= 5){
+					ans = n1 - n2;
+					ndiv.innerHTML = n1 + " - " + n2;
+					//Display operation
+					ansr.value = "";
+					//Clear Input
+				}else if(op <= 7){
+					ans = n1 * n2;
+					ndiv.innerHTML = n1 + " * " + n2;
+					//Display operation
+					ansr.value = "";
+					//Clear Input
+				}else{
+					ans = n1 / n2;
+					ndiv.innerHTML = n1 + " / " + n2;
+					//Display operation
+					ansr.value = "";
+					//Clear Input
+				}
+			}
+		</script>
+	</head>
+	<body onload="load()">
+		<div id="eq">
+			<div id="num"> +  =</div>
+			<input id="ansr" type="text">
+			<button onclick="check()">Check</button>
+			<div id="ans">.</div>
+		</div>
+		<div id="btn">
+			<button onclick="generate()">Generate</button>
+		</div>
+	</body>
+</html>

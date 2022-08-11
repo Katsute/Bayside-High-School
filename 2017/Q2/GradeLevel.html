@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<head>
+	<style>
+		*{
+			text-align:center;
+			font-family:comic sans MS;
+			font-weight:bold;
+		}
+		#mn{
+			background-color:#808080;
+			margin: 30px 70px 0px 70px;
+			padding: 20px 0px 20px 0px;
+		}
+	</style>
+	<script>
+		function gl(){
+			num1 = parseFloat(document.getElementById("num").value);
+			num2 = parseFloat(document.getElementById("num2").value);
+			num3 = parseFloat(document.getElementById("num3").value);
+			grade = document.getElementById("grade");
+			//Calculate the average
+			avg = (num1 + num2 + num3)/3
+			//If above 90
+			if(avg >= 90){
+				grade.innerHTML = "E";
+			//If between 75 and 89
+			}else if(avg >= 75 && avg<= 89){
+				grade.innerHTML = "S";
+			//If between 65 and 74
+			}else if(avg >= 65 && avg<= 74){
+				grade.innerHTML = "N";
+			//If below 64
+			}else if(avg <= 64){
+				grade.innerHTML = "F";
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id="mn">
+		<input id="num" type="text" placeholder="Grade">
+		<input id="num2" type="text" placeholder="Grade">
+		<input id="num3" type="text" placeholder="Grade">
+		<button onclick="gl()">Calculate</button>
+		<div id="grade">.</div>
+	</div>
+</body>

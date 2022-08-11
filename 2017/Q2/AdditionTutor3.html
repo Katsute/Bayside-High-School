@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+	<head>
+		<script>
+			//Set variable as global
+			var n1, n2, userAnswer, ques, result, lower, upper, pic, correct = 0;
+
+			function init(){
+				ques = document.getElementById("ques");
+				result = document.getElementById("results");
+				lower = document.getElementById("lower");
+				upper = document.getElementById("upper");
+
+				var range =  parseInt(upper.value) -  parseInt(lower.value) + 1;
+				//Range of random numbers
+				n1 = Math.floor(Math.random() * range + parseInt(lower.value) );
+				n2 = Math.floor(Math.random() * range + parseInt(lower.value) );
+
+				//If above 5 change operation
+				if(correct < 5){
+					ques.innerHTML = n1  +  "+" +  n2  +  "=";
+				}else{
+					ques.innerHTML = n1  +  "*" +  n2  +  "=";
+				}
+				//Display correct answers, clear answer & pic
+				result.innerHTML = "Correct: " + correct;
+				userAnswer.value = "";
+				pic.src = "";
+
+			}
+
+			function chk(){
+					var correctAnswer;
+					userAnswer = document.getElementById("answer");
+					pic = document.getElementById("pic");
+					//If correct below 5 make addition
+					if(correct < 5){
+						correctAnswer = n1 + n2;
+					}
+					//If correct above 5 make multiplication
+					if(correct >= 5){
+						correctAnswer = n1 * n2;
+					}
+					//If correct display correct, change image, increase correct
+					if(correctAnswer ==  parseInt(userAnswer.value)){
+						result.innerHTML = "Correct";
+						pic.src = "http://media.istockphoto.com/photos/green-checkmark-tick-picture-id106572264?k=6&m=106572264&s=170667a&w=0&h=H2MpZnIYg2exA_Rz906eO8F6G93AVzaEAls50RFOzHA="
+						pic.style.width = "100px";
+						//Equal to itself + 1
+						correct += 1;
+					//Else display incorrect, corect answer, change image
+					}else{
+						result.innerHTML = "Incorrect: " + correctAnswer;
+						pic.src = "http://clipartix.com/wp-content/uploads/2016/05/Check-mark-gallery-recent-updates-cliparts.png"
+						pic.style.width = "100px";
+					}
+				}
+
+		</script>
+
+	</head>
+	<body >
+		<div id="ques"></div>
+		<input type="text" id="lower" placeholder="Lower"/>
+		<input type="text" id="upper" placeholder="Upper"/>
+		<input type="text" id="answer"/>
+		<button onclick="chk()">Check Answer</button>
+		<button onclick="init()">New Question</button>
+		<div id="results"></div>
+		<img src="" id="pic">
+
+
+	</body>
+</html>

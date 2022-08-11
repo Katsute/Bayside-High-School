@@ -1,0 +1,50 @@
+<html>
+	<script>
+		var g = [
+			["Hello",""],
+			["Good morning","https://vignette.wikia.nocookie.net/clubpenguin/images/f/f7/Sun_Pin.PNG/revision/latest/scale-to-width-down/150?cb=20150313154846"],
+			["Welcome",""],
+			["You like jazz?","https://memegenerator.net/img/instances/67190491/you-like-jazz.jpg"]
+		];
+
+		var sg = [
+			["Happy New Years!","https://image.freepik.com/free-vector/happy-new-year-2018-in-blue-and-pink-letters_23-2147720684.jpg"],
+			["Love is in the air","https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/220px-Heart_coraz%C3%B3n.svg.png"]
+		]
+
+		function greeting(){
+			var name = document.getElementById("name");
+			var output = document.getElementById("output");
+			var img = document.getElementById("image");
+
+			var d = new Date();
+			var gt;
+			if(Math.random > 0.5){
+				var mt = d.getMonth(); var dy = d.getDay();
+
+				if(mt == 1 && dy == 1){
+					gt = sg[0];
+				}else if(mt = 2 && dy == 14){
+					gt = sg[1];
+				}else{
+					var n = Math.floor(Math.random() * g.length);
+					gt = g[n]
+				}
+			}else{
+				var n = Math.floor(Math.random() * g.length);
+				gt = g[n];
+			}
+
+			output.innerHTML = gt[0]+ " " + name.value;
+			img.src = gt[1];
+		}
+
+	</script>
+	<body>
+		<input id="name" type="text">
+		<button onclick="greeting()">Greeting</button>
+		<div id="output"><br></div>
+		<br>
+		<img id="image" style="width:200px; height:200px;"></img>
+	</body>
+<html>

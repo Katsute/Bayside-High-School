@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title></title>
+
+
+
+		<style>
+
+		</style>
+
+
+		<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+		<script>
+			var config = {
+				apiKey: "",
+				authDomain: "tutorial-website-project-.firebaseapp.com",
+				databaseURL: "https://tutorial-website-project-.firebaseio.com",
+				projectId: "tutorial-website-project-",
+				storageBucket: "tutorial-website-project-.appspot.com",
+				messagingSenderId: "181401256030"
+			};
+			firebase.initializeApp(config);
+
+			var database = firebase.database().ref()
+
+
+			function submitQuestion(){
+				var q = document.getElementById("q").value;
+				var ch1 = document.getElementById("choice1").value;
+				var ch2 = document.getElementById("choice2").value;
+				var ch3 = document.getElementById("choice3").value;
+				var ch4 = document.getElementById("choice4").value;
+				var a = document.getElementById("a").value;
+
+				database.child(document.getElementById("quiz").value).push(
+					{
+						"question": q,
+						"ch1": ch1,
+						"ch2": ch2,
+						"ch3": ch3,
+						"ch4": ch4,
+						"ans": a
+					}
+				);
+			}
+		</script>
+	</head>
+	<body>
+		<h1>Quiz</h1>
+		<form>
+			<select class="form-control" id="quiz">
+				<option>quiz1</option>
+				<option>quiz2</option>
+				<option>quiz3</option>
+				<option>test</option>
+			</select>
+		</form>
+		<h1>Question</h1>
+		<textarea rows="5" cols="80" id="q"></textarea>
+		<p> A. <input type="text" id="choice1"></p>
+		<p> B. <input type="text" id="choice2"></p>
+		<p> C. <input type="text" id="choice3"></p>
+		<p> D. <input type="text" id="choice4"></p>
+		<h2>Answer</h2>
+		<input type="text" id="a">
+		<button onclick="submitQuestion();">Submit Question</button>
+	</body>
+</html>

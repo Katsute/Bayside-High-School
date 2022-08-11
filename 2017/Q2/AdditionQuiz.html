@@ -1,0 +1,36 @@
+<html>
+	<head>
+		<style>
+
+		</style>
+		<script>
+			var n1 = 0, n2 = 0, ans = 0, ques = 1;
+			//Define GLOBAL variables;
+			function play(){
+				ques = 1;
+				//RESET ques to 1
+				while(ques != 4){
+					//Repeat until ques = 3
+					n1 = parseInt((Math.random()*10)+1);
+					n2 = parseInt((Math.random()*10)+1);
+					//Generate random number each loop
+					ans = n1 + n2;
+					//Get answer
+					var pr = parseFloat(prompt("#"+ques+". What is "+n1+" + "+n2+"?"));
+					//Ask question
+					if(pr != ans){
+						//If incorrect repeat loop
+						alert("#"+ques+". Incorrect, the answer was "+ans);
+					}else{
+						//If correct increase ques by 1 and repeat loop
+						alert("#"+ques+". Correct, "+n1+" + "+n2+" = "+ans);
+						ques++
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<button onclick="play()">Play</button>
+	</body>
+</html>

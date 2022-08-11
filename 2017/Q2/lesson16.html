@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+		body{
+			font-family: Comic Sans MS;
+		}
+			#container{
+				text-align:center;
+				margin: 20% 20% 20% 20%;
+				height:110px;
+				width:60%;
+				background-color:gray;
+			}
+			#output{
+				background-color:white;
+				margin: 10px 10px 10px 10px;
+				height: 42px;
+				font-size:32px;
+			}
+		</style>
+		<script>
+			function add(){
+				var n1 = document.getElementById("num1");
+				var n2 = document.getElementById("num2");
+				var op = document.getElementById("output");
+				var ans = parseFloat(n1.value) + parseFloat(n2.value); //calculation
+				op.innerHTML = parseFloat(n1.value) + " + " + parseFloat(n1.value) + " = " + ans; //output
+			}
+			function subtract(){
+				var n1 = document.getElementById("num1");
+				var n2 = document.getElementById("num2");
+				var op = document.getElementById("output");
+				var ans = parseFloat(n1.value) - parseFloat(n2.value); //calculation
+				op.innerHTML = parseFloat(n1.value) + " - " + parseFloat(n1.value) + " = " + ans; //output
+			}
+			function multiply(){
+				var n1 = document.getElementById("num1");
+				var n2 = document.getElementById("num2");
+				var op = document.getElementById("output");
+				var ans = parseFloat(n1.value) * parseFloat(n2.value); //calculation
+				op.innerHTML = parseFloat(n1.value) + " x " + parseFloat(n1.value) + " = " + ans; //output
+			}
+			function divide(){
+				var n1 = document.getElementById("num1");
+				var n2 = document.getElementById("num2");
+				var op = document.getElementById("output");
+				var ans = parseFloat(n1.value) / parseFloat(n2.value); //calculation
+				op.innerHTML = parseFloat(n1.value) + " / " + parseFloat(n1.value) + " = " + ans; //output
+			}
+		</script>
+	</head>
+
+
+	<body>
+		<div id="container">
+		<br>
+ 		<input type="text" id="num1">
+		<input type="text" id="num2">
+		<button onclick="add()" > + </button>
+		<button onclick="subtract()" > - </button>
+		<button onclick="multiply()" > x </button>
+		<button onclick="divide()" > / </button>
+   		<div id="output" ></div>
+		</div>
+	</body>
+</html>

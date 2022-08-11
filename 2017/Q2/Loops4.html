@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<style>
+			#id{
+				background-color: #99ffff;
+				width: 400px;
+				height: 240px;
+				font-family: Arial Black;
+			}
+			#pic{
+				width:50%;
+			}
+			p{
+				width:50%;
+				display:inline;
+				vertical-align: top;
+			}
+			img{
+				width: 50%;
+				height: 70%;
+			}
+			h1{
+				width:100%
+			}
+		</style>
+		<script>
+		function id(){
+			var build = "";
+			for(i = 1; i<= 5; i++){
+				num1 = Math.floor(Math.random()*1000);
+				num2 = Math.floor(Math.random()*1000);
+				num3 = Math.floor(Math.random()*1000);
+
+				build+="<div id='id'>";
+				build+="<h1> ID#"+i+": Name </h1>";
+				build+="<img id='pic' src='http://images.clipartpanda.com/smiley-face-png-96527038_o.png'>"
+				build+="<p>";
+				build+="Osis: "+num1+"-"+num2+"-"+num3+"";
+				build+="</p>";
+			}
+			document.getElementById("container").innerHTML = build;
+		}
+		</script>
+	</head>
+	<body onload="id()">
+		<div id="container">
+
+		</div>
+	</body>
+</html>

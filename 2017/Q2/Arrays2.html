@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<style>
+
+		</style>
+		<script>
+			function avg(){
+				var grades=[100,95,86,55,65,45,63,72,82,97,47,83,58,91,100];
+				var all=0;
+				var pass=0;
+				var passLength=0;
+				for(i=0;i < grades.length;i++){
+				//Repeat for all grades
+					all+=grades[i];
+					//Add grade of i to all grades
+					if(grades[i]>=65){
+						pass+=grades[i];
+						//Add grade of i if passing
+						passLength++;
+						//Add to length to calculate average
+					}
+				}
+				all = all/grades.length;
+				pass = pass/passLength;
+				document.getElementById("all").innerHTML = "Average of all grades: "+all;
+				document.getElementById("pass").innerHTML = "Average of passing grades: "+pass;
+			}
+		</script>
+	</head>
+	<body onload="avg()">
+		<div id="all">
+
+		</div>
+		<div id = "pass">
+
+		</div>
+	</body>
+</html>

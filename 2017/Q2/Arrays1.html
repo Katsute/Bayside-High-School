@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<style>
+
+		</style>
+		<script>
+			function link(){
+				// "links" is a reserved word
+				var url=["cnn.com", "bmw.com","google.com"];
+				//Create an array
+				var build=""
+				for(i=0;i < url.length;i++){
+					build+="<a href='http://www."+url[i]+"',>"+url[i]+"</a><br>";
+					//Get the item [i]
+				}
+				document.getElementById("links").innerHTML = build;
+			}
+		</script>
+	</head>
+	<body>
+		<button onclick="link()">Links</button>
+		<div id="links">
+
+		</div>
+	</body>
+</html>

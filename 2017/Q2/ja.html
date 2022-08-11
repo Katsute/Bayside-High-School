@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+	body{
+	background-Color:grey
+	}
+</style>
+<script>
+	function rolldice(){
+		n1=Math.floor(Math.random()*6+1);
+		n2=Math.floor(Math.random()*6+1);
+		var r= document.getElementById("resp");
+		sum= n1+n2;
+			if (sum==7 || sum==11){
+				r.innerHTML = "You Win"
+				r.innerHTML = "" +n1+ " and " +n2+".";
+			}else{
+				r.innerHTML="You Lose"
+				r.innerHTML = "You rolled a " +n1+ " and " +n2+".";
+				}
+
+	}
+</script>
+</head>
+<body>
+	<p>Press on the Play button to Roll a dice. If dice is 7 or 11 you win</p>
+	<button onclick= "rolldice()">Play</button>
+	<div id="resp"></div>
+</body>
+</html>

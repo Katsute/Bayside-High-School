@@ -1,0 +1,53 @@
+<html>
+	<head>
+		<style>
+			body{
+				background-color:gray;
+			}
+			#container div {
+				width:350px;
+				height:400px;
+				margin:20px;
+				float:left;
+				border-radius:10px;
+				padding:10px;
+				box-shadow:5px 5px 5px black;
+				font-family:Arial;
+				overflow-y:scroll;
+				background-color:white;
+			}
+			#container h {
+
+			}
+			#container p {
+
+			}
+			#container img {
+				width:100%;
+			}
+		</style>
+		<script src="resources.js">
+		</script>
+		<script>
+			function Init(){
+				var build = "";
+				for(i = 0; i < data.resources.length; i++){
+					var site = data.resources[i].site;
+					var image = data.resources[i].image;
+					var desc = data.resources[i].description;
+					build+= "<div>";
+					build+= "<h3>"+site+"</h3><br>";
+					build+= "<img src='https://www.baysidehs.net/CTE/images/resources/"+image+"'><br>";
+					build+= "<p>"+desc+"</p><br>";
+					build+= "</div>";
+				}
+			document.getElementById("container").innerHTML = build;
+			}
+		</script>
+	</head>
+	<body onload="Init()">
+		<div id="container">
+
+		</div>
+	</body>
+</html>

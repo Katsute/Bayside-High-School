@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			*{
+				font-family: Arial Black;
+			}
+			#dis{
+				color: #66ff99;
+			}
+			#tax{
+				color: #ff5050;
+			}
+		</style>
+		<script>
+			function calc(){
+				var i1 = parseFloat(document.getElementById("1").value);
+				var i2 = parseFloat(document.getElementById("2").value);
+				var total = i1 + i2;
+				var divTotal = document.getElementById("total");
+				var divTax = document.getElementById("tax");
+				var divTaxFin = document.getElementById("finTax");
+				if(total > 100){
+					var disc = total * 0.95;
+					var dev = total * 0.05;
+					var tax = total * 0.0875;
+					var tot = disc + tax;
+					divTotal.innerHTML = "$" + total;
+					document.getElementById("dis").innerHTML = "-$" + dev;
+					divTax.innerHTML = "+$" + tax;
+					divTaxFin.innerHTML = "$" + tot;
+				}
+				else{
+					var tax = total * 0.0875;
+					var tot = total + tax;
+					divTotal.innerHTML = "$" + total;
+					document.getElementById("dis").innerHTML = "";
+					divTax.innerHTML = "+$" + tax;
+					divTaxFin.innerHTML = "$" + tot;
+				}
+			}
+		</script>
+	</head>
+
+	<body>
+		<input type="text" id="1" placeholder="Item 1">
+		<input type="text" id="2" placeholder="Item 2">
+		<button onclick="calc()"> Calculate </button>
+		<div id="total"></div>
+		<div id="dis"></div>
+		<div id="tax"></div>
+		<div id="finTax"></div>
+	</body>
+</html>

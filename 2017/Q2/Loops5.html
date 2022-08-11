@@ -1,0 +1,53 @@
+<html>
+	<head>
+		<style>
+
+		</style>
+		<script>
+			function sum(){
+				var num = 0;
+				var build = "";
+				var sum = document.getElementById("sum");
+				for(var i = 1; i<=100; i++){
+					num = num + i;
+				}
+				sum.innerHTML = num;
+			}
+			function qnt(){
+				var build = "";
+				var input = document.getElementById("input");
+				max = parseFloat(document.getElementById("max").value);
+				console.log("Creating "+max+" inputs with unique IDs")
+				for(var i = 1; i<=max; i++){
+					build+= "<input type='number' id="+i+">";
+				}
+				input.innerHTML = build;
+			}
+			function total(){
+				var build = 0;
+				console.log("Adding "+max+" times")
+				for(var i= 1; i<=max; i++){
+					var n1 = parseFloat(document.getElementById(i).value);
+					build= build + n1;
+					console.log("Total: "+build);
+				}
+				document.getElementById("total").innerHTML = "Total before tax: $"+build;
+				console.log("Total before tax: "+build);
+				build = build * 1.08;
+				document.getElementById("tax").innerHTML = "Total after tax: $"+build;
+				console.log("Total after tax: "+build)
+			}
+		</script>
+	</head>
+	<body onload="sum()">
+		<div id="sum"></div>
+
+		<input type="number" id="max" placeholder="Max amount of prices">
+		<button onclick="qnt()">Enter</button>
+		<button onclick="total()">Total</button>
+		<div id="total"></div>
+		<div id="tax"></div>
+		<br>
+		<div id="input"></div>
+	</body>
+</html>

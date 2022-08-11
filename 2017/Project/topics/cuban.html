@@ -1,0 +1,116 @@
+<html>
+	<head>
+		<title>Cold War</title>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.3.0/c3.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.3.0/c3.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
+
+		<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key="></script>
+		<script>
+			var config = {
+				apiKey: "",
+				authDomain: "tutorial-website-project-.firebaseapp.com",
+				databaseURL: "https://tutorial-website-project-.firebaseio.com",
+				projectId: "tutorial-website-project-",
+				storageBucket: "tutorial-website-project-.appspot.com",
+				messagingSenderId: "181401256030"
+			};
+			firebase.initializeApp(config);
+
+			function myMap(latn,lonn,divid){
+				var mapProp= {
+					center:new google.maps.LatLng(latn,lonn),
+					zoom:10,
+				};
+				var map=new google.maps.Map(document.getElementById(divid),mapProp);
+				//
+				var marker = new google.maps.Marker({
+					position: {lat: latn, lng: lonn},
+					map: map
+				});
+				//22.71658 -83.05647
+			};
+		</script>
+
+		<style>
+			#map{
+				height:300px;
+			}
+		</style>
+	</head>
+	<body onload="myMap(22.71658,-83.05647,'map')">
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">Cold War</a>
+				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="../topics.html">Topics</a></li>
+					<li><a href="../test.html">Test</a></li>
+					<li><a href="../about.html">About</a></li>
+				</ul>
+			</div>
+		</nav>
+		<div class="container">
+			<div class="col-md-4">
+				<h1>Cuban Missile Crisis</h1>
+				<div class="panel panel-primary">
+					<div class="panel-heading">Location</div>
+					<div class="panel-body" id="map"></div>
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading">Cuban Missle</div>
+					<div class="panel-body">
+						<img style="width:100%;" src="https://s3.amazonaws.com/static.history.state.gov/milestones/cuban-missile-crisis.jpg">
+						<img style="width:100%;" src="http://www.johndclare.net/images/Armwrestling.gif">
+					</div>
+				</div>
+			</div>
+			<div class="col-md-8">
+				<h2 id="background">Background</h2>
+					<blockquote>
+						<p>"During the Cuban Missile Crisis, leaders of the U.S. and the Soviet Union engaged in a tense, 13-day political and military standoff in
+						October 1962 over the installation of nuclear-armed Soviet missiles on Cuba, just 90 miles from U.S. shores. In a TV address on October 22,
+						1962, President John Kennedy (1917-63) notified Americans about the presence of the missiles, explained his decision to enact a naval blockade
+						around Cuba and made it clear the U.S. was prepared to use military force if necessary to neutralize this perceived threat to national security.
+						Following this news, many people feared the world was on the brink of nuclear war. However, disaster was avoided when the U.S. agreed to Soviet
+						leader Nikita Khrushchev’s (1894-1971) offer to remove the Cuban missiles in exchange for the U.S. promising not to invade Cuba. Kennedy also
+						secretly agreed to remove U.S. missiles from Turkey."
+						</p>
+
+						<footer>History.com</footer>
+					</blockquote>
+				<h2 id="risingpoint">Rising Point</h2>
+					<blockquote>
+						<p>"No one was sure how Soviet leader Nikita Khrushchev would respond to the naval blockade and US demands.
+						But the leaders of both superpowers recognized the devastating possibility of a nuclear war and publicly agreed to a
+						deal in which the Soviets would dismantle the weapon sites in exchange for a pledge from the United States not to invade
+						Cuba. In a separate deal, which remained secret for more than twenty-five years, the United States also agreed to remove
+						its nuclear missiles from Turkey. Although the Soviets removed their missiles from Cuba, they escalated the building of their military arsenal;
+						the missile crisis was over, the arms race was not."</p>
+						<footer>jfklibrary.org</footer>
+					</blockquote>
+				<h2 id="ending">Ending</h2>
+					<blockquote>
+						<p>"The Cuban missile crisis stands as a singular event during the Cold War and strengthened Kennedy’s
+						image domestically and internationally. It also may have helped mitigate negative world opinion regarding
+						the failed Bay of Pigs invasion. Two other important results of the crisis came in unique forms. First, despite
+						the flurry of direct and indirect communications between the White House and the Kremlin—perhaps because of it—Kennedy
+						and Khrushchev, and their advisers, struggled throughout the crisis to clearly understand each others’ true intentions,
+						while the world hung on the brink of possible nuclear war. In an effort to prevent this from happening again, a direct telephone
+						link between the White House and the Kremlin was established; it became known as the "Hotline." Second, having approached the brink
+						of nuclear conflict, both superpowers began to reconsider the nuclear arms race and took the first steps in agreeing to a nuclear Test Ban Treaty."</p>
+						<footer>History.state.gov</footer>
+					</blockquote>
+			</div>
+		</div>
+	</body>
+</html>

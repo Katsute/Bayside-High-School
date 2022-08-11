@@ -1,0 +1,74 @@
+<html>
+
+	<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+	<script>
+  	// Initialize Firebase
+  		var config = {
+			apiKey: "",
+			authDomain: "chatroom-.firebaseapp.com",
+			databaseURL: "https://chatroom-.firebaseio.com",
+			projectId: "chatroom-",
+			storageBucket: "chatroom-.appspot.com",
+			messagingSenderId: "111059271245"
+		};
+		firebase.initializeApp(config);
+
+		// Global varibles
+        var database = firebase.database().ref();
+        var room = "data";
+        var data;
+
+		function submitMessage(){
+			var user = document.getElementById("user").value;
+			var message = document.getElementById("message").value;
+			database.child("data").push(
+					{
+						"user":user,
+						"msg":message
+					}
+			)
+		}
+
+		function submitUpdate(){
+
+			var key = document.getElementById("keyid").value;
+			var message = document.getElementById("updatemessage").value;
+			//var user = data[key].user;
+			database.child("data/"+key).update(
+					{
+
+						"msg":message
+					}
+			)
+		}
+		//
+       //Event Listener
+        database.child("data").on('value',function(snapshot){
+            data = snapshot.val();
+			build = ""
+            for(var key in data){
+		    	build += "<b> KEY:: </b> " + key + " <br>" ;
+
+                build += "<b>" + data[key].user + "</b>:" + data[key].msg + "<br>" ;
+
+            }
+			document.getElementById("chatroom").innerHTML = build;
+        })
+    </script>
+    <body>
+        User <input type="text" id="user" placeholder="Enter Name"><br>
+        Message <input type="text" id="message" placeholder="Enter Message"><br>
+
+        <button onclick="submitMessage()">Submit</button><br>
+        <hr>
+        Key <input type="text" id="keyid" placeholder="Enter Key"><br>
+        Message <input type="text" id="updatemessage" placeholder="Change Message"><br>
+
+        <button onclick="submitUpdate()">Submit Update</button> <br><br>
+
+        <div id="chatroom"></div>
+
+
+    </body>
+
+</html>

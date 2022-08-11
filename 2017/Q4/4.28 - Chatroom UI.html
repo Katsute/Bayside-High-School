@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<meta charset="utf-8">
+
+		<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+
+		<style>
+			*{
+				text-align: left;
+			}
+			#chat{
+				height:750px;
+				overflow:scroll;
+			}
+		</style>
+
+		<script>
+			// Initialize Firebase
+			// TODO: Replace with your project's customized code snippet
+			var config = {
+				apiKey: "",
+				databaseURL: "https://chatroom.firebaseio.com/"
+			};
+			// Initialize default app
+			firebase.initializeApp(config);
+			// Get a reference to the DB service
+			var database = firebase.database().ref();
+
+
+			// Get info from DB > 'on'
+			var data;
+			database.child("dataTable").on(
+				'value',
+				function(snapshot){
+					data = snapshot.val();
+
+					var build = "<hr>"
+					for(var key in data){
+						//Overflow moderation
+						var msg = data[key].message
+						if(msg.length >= 1000){
+							msg = "<i>message was greater than 1000 characters</i>";
+						}
+						//
+						build += "<b>[" + data[key].name + "]</b>: " + msg + "<br>";
+					}
+					document.getElementById("chat").innerHTML = build;
+
+				}
+			);
+
+			function submit(){
+				var name = document.getElementById("usr").value;
+				var message = document.getElementById("msg").value;
+
+				//Push value into DB
+				database.child("dataTable").push(
+					{
+						"name" : name,
+						"message" : message
+					}
+				);
+			}
+		</script>
+	</head>
+	<body>
+		<div class="col-md-3">
+			<div class="form-group">
+				<label for="usr">Name:</label>
+				<input type="text" class="form-control" id="usr" placeholder="Enter Name">
+			</div>
+			<div class="form-group">
+				<label for="msg">Message:</label>
+				<input type="text" class="form-control" id="msg" placeholder="Enter Message">
+			</div>
+			<button class="btn btn-primary" onclick="submit()">Send Message</button>
+		</div>
+		<div class="col-md-9" id="chat">
+
+		</div>
+	</body>
+</html>

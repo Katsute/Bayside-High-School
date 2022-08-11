@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> Project </title>
+		<style>
+			body{
+				background-image: url("");
+				background-size: 200% 200%;
+				background-repeat: no-repeat;
+				background-position: center;
+			}
+			img{
+				width: 100px;
+				height: 100px;
+				text-align: center;
+				border-radius:15px;
+				-webkit-filter: grayscale(100%);
+				filter: grayscale(100%);
+			}
+			img:hover{
+				text-align: center;
+				border-radius:15px;
+				-webkit-filter: grayscale(0%);
+
+			}
+			#mainPic{
+				width: 400px;
+				height: 400px;
+				border-color: #66c2ff;
+				border-bottom-width: 10px;
+				-webkit-filter: grayscale(0%);
+			}
+			#header{
+				text-align: center;
+				font-family: Comic Sans MS;
+				font-size:24px;
+				font-weight: bold;
+				color:#ff9933;
+				outline-style: solid;
+				outline-color: black;
+				background-color:#66c2ff;
+				text-shadow: 2px 2px black;
+				outline-color: #ff9933;
+			}
+			#thumbnails{
+				text-align: center;
+				height:140px;
+				vertical-align: bottom;
+				background-color: #66c2ff;
+				outline-style: solid;
+				outline-color: #ff9933;
+				margin: 10px 10px 10px 10px
+			}
+			#main{
+				text-align: center;
+			}
+			#center{
+
+			}
+		</style>
+		<script>
+			function setPic(pic){
+				var destn = document.getElementById("mainPic");
+				destn.src = pic.src;
+				document.body.style.backgroundImage = "url('"+pic.src+"')";
+			}
+		</script>
+	</head>
+	<body class="bk"">
+		<div id="header">Bayside Highschool</div>
+		<br>
+		<div id="thumbnails">
+			<img src="https://s-media-cache-ak0.pinimg.com/564x/98/24/e0/9824e049230d4ebd1fa1d9a1b3f90c2a.jpg" onclick="setPic(this)">
+			<img src="http://schools.nyc.gov/NR/rdonlyres/88368498-9B7C-42A7-9E53-EA41AD41141A/48602/bhs.jpg" onclick="setPic(this)">
+			<img src="https://lh3.googleusercontent.com/-GEK64XiInio/T7BhNW9CRzI/AAAAAAAAneU/bry1ks7NCeYE8iDEOFw7HDAUotxizU13ACHM/s540/IMG_4245.JPG" onclick="setPic(this)">
+			<img src="https://i.ytimg.com/vi/qX9nwzZi5FQ/maxresdefault.jpg" onclick="setPic(this)">
+			<img src="http://www.professionalpt.com/wp-content/uploads/2013/07/Bayside-High-School1.jpg" onclick="setPic(this)">
+			<img src="http://assets.nydailynews.com/polopoly_fs/1.2200876.1430163580!/img/httpImage/image.jpg_gen/derivatives/article_750/article-bayside-0428.jpg" onclick="setPic(this)">
+		</div>
+		<br>
+		<div id="main">
+			<br>
+			<img src="http://www.sendengo.com/static/iship/images/loading/loading-circle.gif" id="mainPic">
+		</div>
+	</body>
+</html>

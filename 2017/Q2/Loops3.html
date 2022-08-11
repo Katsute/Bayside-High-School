@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<style>
+			button{
+				background-color:#44f9f9;
+				width:10%;
+				height:33px;
+			}
+			button:hover{
+				background-color:#66f99f
+			}
+		</style>
+		<script>
+			function display(){
+				//Empty Variable
+				var build = "";
+				for(var i = 1; i <= 100; i++){
+					build+= "<button onclick='alert("+i+")'>"+i+"</button>";
+					//Making a long HTML string
+				}
+			//Overwrite 'container' instead of page
+			document.getElementById("container").innerHTML = build;
+			}
+		</script>
+	</head>
+	<body onload="display()">
+		<script>
+			for(var i = 1; i <= 100; i++){
+				//Overwrites existing HTML
+				document.write("<button onclick='alert("+i+")'>"+i+"</button>");
+			}
+		</script>
+		<hr>
+		<div id="container">
+
+		</div>
+
+	</body>
+</html>

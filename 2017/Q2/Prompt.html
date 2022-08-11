@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<style>
+
+		</style>
+		<script>
+			function qnt(){
+				var qnt = parseInt(document.getElementById("max").value)
+				var build = 0;
+				var output = document.getElementById("total");
+				for(var i = 1; i<=qnt; i++){
+				//Repeat until maximum is met
+					var pr = parseFloat(prompt("Price #"+i+":"));
+					//Add input from promt to build
+					build = build + pr;
+				}
+				output.innerHTML = "Total: $"+build+"<br> Total after tax: $"+build*1.08;
+				//							Display Total			     Display Total w/tax
+			}
+		</script>
+	</head>
+	<body>
+		<input type="number" id="max" placeholder="Max amount of prices">
+		<button onclick="qnt()">Enter</button>
+
+
+		<div id="total"></div>
+
+	</body>
+</html>

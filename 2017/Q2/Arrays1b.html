@@ -1,0 +1,32 @@
+<html>
+	<head>
+		<style>
+			img{
+				height:200px;
+				width:200px;
+			}
+		</style>
+		<script>
+			function imgs(){
+				var imgs=["http://www.kkrv.com/wp-content/uploads/2016/02/google-logo.png",
+						  "https://lh4.ggpht.com/m05SBF4omSJbBy-EnPClGH_yAVvgAn6wr6KQwdtXhn6ATylzMYYJb6WaW-pNbtmqg5I=w300",
+						  "https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia-logo-v2.png"];
+				var url=["https://www.google.com/","http://www.cnn.com/","https://www.wikipedia.org/"];
+				//Image of i corresponds to url of i
+				var build=""
+				for(i=0;i < url.length;i++){
+					build+="<a href='"+url[i]+"'><img src='"+imgs[i]+"'></a><br>"
+					//Use url of i with image of i
+				}
+				document.getElementById("imgs").innerHTML = build;
+			}
+		</script>
+	</head>
+	<body>
+		<button onclick="imgs()">Images</button>
+		<br>
+		<div id="imgs">
+
+		</div>
+	</body>
+</html>

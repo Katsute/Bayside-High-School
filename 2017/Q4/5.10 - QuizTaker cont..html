@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title></title>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<meta charset="utf-8">
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+
+		<script type="text/template" id="ques">
+			<div class="col-sm-6 col-md-4">
+				<div class="panel panel-primary">
+					<div class="panel-heading"> Q {{qNum}}: {{ data.question }} </div>
+					<div class="panel-body">A. {{ data.choice1 }} </div>
+					<div class="panel-body">B. {{ data.choice2 }} </div>
+					<div class="panel-body">C. {{ data.choice3 }} </div>
+					<div class="panel-body">D. {{ data.choice4 }} </div>
+					<div class="panel-footer">
+						<form>
+							<div class="input-group">
+								<span class="input-group-addon">Answer</span>
+								<input id="{{qID}}" type="text" class="form-control">
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</script>
+
+		<script>
+		  // Initialize Firebase
+			var config = {
+				apiKey: "",
+				authDomain: "tutorialwebsite-.firebaseapp.com",
+				databaseURL: "https://tutorialwebsite-.firebaseio.com",
+				projectId: "tutorialwebsite-",
+				storageBucket: "tutorialwebsite-.appspot.com",
+				messagingSenderId: "908907778669"
+			};
+			firebase.initializeApp(config);
+
+			var database = firebase.database().ref()
+			var data;
+			var qNumber =0;
+
+			function displayQuestions(){
+				database.child("questions").on('value', function(snapshot){
+					var template = $("#ques").html();
+					data = snapshot.val();
+					var build ="";
+
+					for(var key in data){
+						qNumber++;
+						quesJSON ={
+							"data": data[key],
+							"qID": key,
+							"qNum": qNumber
+						}
+						build += Mustache.render(template, quesJSON);
+					}
+					document.getElementById("quiz").innerHTML = build;
+				})
+			}
+			function checkAnswers(){
+				var grade = 0;
+
+                for(var key in data){
+                    var userAns = document.getElementById(key).value;
+                    //console.log(userAns);
+                    var correctAns = data[key].answer;
+
+					if (userAns.toLowerCase() == correctAns.toLowerCase()){
+						grade += 1;
+					}
+				}
+                //console.log(grade);
+				document.getElementById("score").innerHTML = "<h1>Your score: " + grade + " / " + qNumber + "</h1>";
+			}
+		</script>
+	</head>
+	<body onload="displayQuestions()">
+		<div class="container" id="quiz">
+
+		</div>
+		<button class="btn btn-primary" onclick="checkAnswers()">Check Answers</button>
+		<div id="score"></div>
+	</body>
+</html>
